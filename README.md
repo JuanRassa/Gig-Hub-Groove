@@ -42,8 +42,8 @@ Gig Hub Groove is an application created for people who endorse concerts and fes
 
 ## Links
 ### Git
-#### Front End: TBC
-#### Back End: TBC
+#### Front End: [Gig Hub Groove](https://github.com/JuanRassa/Gig-Hub-Groove)
+#### Back End: [Gig Hub Independent](https://github.com/JuanRassa/Gig-Hub-Independent)
 #### Deploy Link: TBC
 
 ## Contributors
