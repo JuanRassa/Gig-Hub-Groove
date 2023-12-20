@@ -1,11 +1,17 @@
 import './App.css';
-import AllConcerts from './components/AllConcerts';
+import AllConcerts from './pages/trendies/AllConcerts';
+import DrawerAppBar from './components/DrawerAppBar';
+import HomePage from './pages/HomePage';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div>
-      <h1>Gig Hub Groove</h1>
-      <AllConcerts />
+      <DrawerAppBar />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/allconcerts' element={<AllConcerts />} />
+      </Routes>
     </div>
   );
 }
