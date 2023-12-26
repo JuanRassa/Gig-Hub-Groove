@@ -9,7 +9,7 @@ function HomePage() {
         <h3>Trendy Concerts</h3>
       </Link>
       <p>Check out the most trendy concerts neer you!</p>
-      <Link>
+      <Link to='/independent'>
         <h3>Independent</h3>
       </Link>
       <p>Want to know some new artist?! Check out our independent list</p>
