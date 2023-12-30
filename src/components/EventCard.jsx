@@ -4,10 +4,12 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 
 function EventCard({ events }) {
-  console.log(events);
+  // console.log(events);
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -29,7 +31,9 @@ function EventCard({ events }) {
       </CardContent>
       <CardActions>
         <Button size='small'>Share</Button>
-        <Button size='small'>Learn More</Button>
+        <Link to={`/allconcerts/${events.identifier}`} size='small'>
+          Learn More
+        </Link>
       </CardActions>
     </Card>
   );
