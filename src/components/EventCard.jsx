@@ -13,8 +13,13 @@ function EventCard({ events }) {
   const { pathname } = useLocation();
   console.log(pathname);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component='img' alt='event image' height='140' image={events.image} />
+    <Card sx={{ maxWidth: 345 }} className='eventCard'>
+      <CardMedia
+        component='img'
+        alt='event image'
+        height='140'
+        image={events.image}
+      />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}

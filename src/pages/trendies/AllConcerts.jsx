@@ -2,14 +2,24 @@ import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import EventCard from '../../components/EventCard';
-
-const API_URL =
-  'https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76';
+import Filters from '../../components/Filters';
+import SearchBar from '../../components/SearchBar';
 
 function AllConcerts() {
   const [showEvents, setShowEvents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({
+    geoCountryIso2: '',
+    artistName: '',
+    eventType: '',
+    eventDateFrom: '',
+    eventDateTo: '',
+    genreSlug: '',
+  });
 
-  useEffect(() => {
+  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}`;
+
+  const getEvents = () => {
     axios
       .get(API_URL)
       .then(response => {
@@ -23,13 +33,25 @@ function AllConcerts() {
       .catch(error => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    getEvents();
   }, []);
+
   return (
     <div>
       <h1>Trendy Concerts</h1>
+      <Filters
+        showEvents={showEvents}
+        setShowEvents={setShowEvents}
+        filters={filters}
+        setFilters={setFilters}
+        getEvents={getEvents}
+      />
 
-      {showEvents.map(events => (
-        <EventCard key={events.identifier} events={events} />
+      {showEvents.map(event => (
+        <EventCard key={event.identifier} events={event} />
       ))}
     </div>
   );

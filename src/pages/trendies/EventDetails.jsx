@@ -42,6 +42,14 @@ function EventDetails() {
             <p>
               {event.location &&
                 event.location.address &&
+                event.location.address.addressCountry.name}
+            </p>
+            {event.location &&
+              event.location.address &&
+              event.location.address.addressCountry.identifier}
+            <p>
+              {event.location &&
+                event.location.address &&
                 event.location.address.streetAddress}
             </p>
           </div>
@@ -56,13 +64,37 @@ function EventDetails() {
               {event.performer &&
                 Array.isArray(event.performer) &&
                 event.performer
-                  .slice(0, 10)
                   .map(performer => performer.name)
                   .join(', ')}{' '}
-              and much more!
             </p>
+            {(event['@type'] === 'Concert' ||
+              event['@type'] === 'Festival') && (
+              <p>
+                {event.performer &&
+                  Array.isArray(event.performer) &&
+                  (() => {
+                    const uniqueGenres = [];
+                    event.performer.forEach(performer => {
+                      if (
+                        performer.genre &&
+                        !uniqueGenres.includes(performer.genre)
+                      ) {
+                        uniqueGenres.push(performer.genre);
+                      }
+                    });
+                    return uniqueGenres.length > 0
+                      ? uniqueGenres.join(', ')
+                      : '';
+                  })()}
+              </p>
+            )}
           </div>
-          <p>{event.url}</p>
+          <p>Buy your ticket at:</p>
+          <p>
+            {event.offers &&
+              Array.isArray(event.offers) &&
+              event.offers.map(offers => offers.url)}
+          </p>
         </div>
       ) : (
         <p>Loading...</p>
