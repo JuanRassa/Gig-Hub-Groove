@@ -11,7 +11,7 @@ function EventCard({ events }) {
   // console.log(events);
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} className='eventCard'>
       <CardMedia
         component='img'
         alt='event image'
