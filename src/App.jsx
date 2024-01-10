@@ -5,6 +5,9 @@ import DrawerAppBar from './components/DrawerAppBar';
 import HomePage from './pages/HomePage';
 import { Route, Routes } from 'react-router-dom';
 import EventDetails from './pages/trendies/EventDetails';
+import EventDetailsIndependent from './pages/independent/EventDetailsIndependent';
+import Login from './pages/users/Login';
+import Register from './pages/users/Register';
 
 function App() {
   return (
@@ -13,8 +16,11 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/allconcerts' element={<AllConcerts />} />
-        <Route path='/independent' element={<HomeIndependent />} />
         <Route path='/allconcerts/:eventId' element={<EventDetails />} />
+        <Route path='/independent' element={<HomeIndependent />} />
+        <Route path='/independent/:eventId' element={<EventDetailsIndependent />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
     </div>
   );
