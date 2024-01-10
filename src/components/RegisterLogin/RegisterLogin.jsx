@@ -1,0 +1,87 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
+import './styles.css';
+
+const RegisterLogin = () => {
+  const API_URL = `https://gig-hub-independent.adaptable.app/users`;
+  const { pathname } = useLocation();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsernameInput = e => {
+    setUsername(e.target.value);
+  };
+  const handlePasswordInput = e => {
+    setPassword(e.target.value);
+  };
+
+  const loginRegisterFunk = async () => {
+    try {
+      if (pathname === '/login') {
+        const response = await axios.get(API_URL);
+        const usersList = response.data;
+        const userFound = usersList.find(user => user.username === username);
+        if (userFound && userFound.password === password) {
+          alert('WELCOME!', userFound.username);
+        }
+        console.log(usersList);
+        console.log('userFound:', userFound);
+      } else {
+        const response = await axios.post(API_URL, {
+          username: username,
+          password: password,
+          favorites: [],
+        });
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className='RegisterLogin'>
+      <form
+        className='RegisterLoginForm'
+        onSubmit={e => {
+          e.preventDefault();
+          alert('Submit');
+          loginRegisterFunk();
+        }}>
+        <div className='InputWrapper'>
+          <label htmlFor='username'>Username</label>
+          <input
+            onChange={e => {
+              handleUsernameInput(e);
+            }}
+            value={username}
+            className='UsernameInput'
+            type='text'
+            name='username'
+            id='username'
+            placeholder='Username'
+          />
+        </div>
+        <div className='InputWrapper'>
+          <label htmlFor='password'>Password</label>
+          <input
+            onChange={e => {
+              handlePasswordInput(e);
+            }}
+            value={password}
+            className='PasswordInput'
+            type='password'
+            name='password'
+            id='password'
+            placeholder='Password'
+          />
+        </div>
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default RegisterLogin;

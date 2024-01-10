@@ -6,24 +6,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import { useLocation } from 'react-router-dom';
 
 function EventCard({ events }) {
   // console.log(events);
-
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component='img'
-        alt='event image'
-        height='140'
-        image={events.image}
-      />
+      <CardMedia component='img' alt='event image' height='140' image={events.image} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {events.startDate}
+          {pathname === '/allconcerts' ? events.startDate : events['start-date']}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {events.location.name}
@@ -31,9 +28,16 @@ function EventCard({ events }) {
       </CardContent>
       <CardActions>
         <Button size='small'>Share</Button>
-        <Link to={`/allconcerts/${events.identifier}`} size='small'>
-          Learn More
-        </Link>
+        {pathname === '/allconcerts' && (
+          <Link to={`/allconcerts/${events.identifier}`} size='small'>
+            Learn More
+          </Link>
+        )}
+        {pathname === '/independent' && (
+          <Link to={`/independent/${events.id}`} size='small'>
+            Learn More
+          </Link>
+        )}
       </CardActions>
     </Card>
   );
