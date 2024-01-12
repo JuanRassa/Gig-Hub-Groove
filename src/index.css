@@ -1,3 +1,4 @@
 .MuiCard-root {
-  width: clamp(280px, 30vw, 320px);
+  max-width: unset !important;
+  width: clamp(320px, 20%, 20%);
 }

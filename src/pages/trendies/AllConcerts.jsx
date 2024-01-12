@@ -19,7 +19,7 @@ function AllConcerts() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage}&perPage=9`;
+  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage}&perPage=12`;
 
   const getEvents = () => {
     setLoading(true);
@@ -59,19 +59,10 @@ function AllConcerts() {
     <div>
       <h1 className='mainTitle'>Trendy Concerts</h1>
 
-      <Filters
-        showEvents={showEvents}
-        setShowEvents={setShowEvents}
-        filters={filters}
-        setFilters={setFilters}
-        getEvents={getEvents}
-      />
+      <Filters showEvents={showEvents} setShowEvents={setShowEvents} filters={filters} setFilters={setFilters} getEvents={getEvents} />
       <div className='AllConcerts_container'>
         {loading && <p>Loading...</p>}
-        {!loading &&
-          showEvents.map(event => (
-            <EventCard key={event.identifier} events={event} />
-          ))}
+        {!loading && showEvents.map(event => <EventCard key={event.identifier} events={event} />)}
       </div>
 
       <div>
