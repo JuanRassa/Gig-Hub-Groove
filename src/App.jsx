@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { LoginContext } from './context/LoginContext';
 import './App.css';
 import AllConcerts from './pages/trendies/AllConcerts';
 import HomeIndependent from './pages/independent/HomeIndependent';
@@ -10,18 +12,36 @@ import Login from './pages/users/Login';
 import Register from './pages/users/Register';
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
+  const [usernameAuth, setUsernameAuth] = useState('');
+
+  useEffect(() => {
+    const is_logged = window.sessionStorage.getItem('is_logged');
+
+    if (is_logged) {
+      setIsLogged(is_logged);
+      setUsernameAuth(window.sessionStorage.getItem('logged_username'));
+    }
+  }, []);
+
   return (
     <div>
-      <DrawerAppBar />
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/allconcerts' element={<AllConcerts />} />
-        <Route path='/allconcerts/:eventId' element={<EventDetails />} />
-        <Route path='/independent' element={<HomeIndependent />} />
-        <Route path='/independent/:eventId' element={<EventDetailsIndependent />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-      </Routes>
+      <LoginContext.Provider
+        value={{
+          isLoggedCtx: [isLogged, setIsLogged],
+          usernameAuthCtx: [usernameAuth, setUsernameAuth],
+        }}>
+        <DrawerAppBar />
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/allconcerts' element={<AllConcerts />} />
+          <Route path='/allconcerts/:eventId' element={<EventDetails />} />
+          <Route path='/independent' element={<HomeIndependent />} />
+          <Route path='/independent/:eventId' element={<EventDetailsIndependent />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+        </Routes>
+      </LoginContext.Provider>
     </div>
   );
 }

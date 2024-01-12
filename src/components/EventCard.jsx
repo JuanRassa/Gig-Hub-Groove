@@ -11,15 +11,9 @@ import { useLocation } from 'react-router-dom';
 function EventCard({ events }) {
   // console.log(events);
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
-      <CardMedia
-        component='img'
-        alt='event image'
-        height='140'
-        image={events.image}
-      />
+      <CardMedia component='img' alt='event image' height='140' image={events.image} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}

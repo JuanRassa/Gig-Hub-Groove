@@ -11,9 +11,9 @@ function EventDetailsIndependent() {
     axios
       .get(`https://gig-hub-independent.adaptable.app/events/?id=${eventId}`)
       .then(response => {
-        console.log('API Response:', response.data);
+        // console.log('API Response:', response.data);
         const eventFromApi = response.data[0];
-        console.log('Event from API:', eventFromApi);
+        // console.log('Event from API:', eventFromApi);
         setEvent(eventFromApi);
       })
       .catch(error => {
