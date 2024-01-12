@@ -10,6 +10,8 @@ import EventDetails from './pages/trendies/EventDetails';
 import EventDetailsIndependent from './pages/independent/EventDetailsIndependent';
 import Login from './pages/users/Login';
 import Register from './pages/users/Register';
+import Favorites from './pages/users/Favorites';
+import CreateEvent from './pages/independent/CreateEvent';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -42,6 +44,8 @@ function App() {
           <Route path='/independent/:eventId' element={<EventDetailsIndependent />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/my-favorites' element={<Favorites />} />
+          <Route path='/new-event' element={<CreateEvent />} />
         </Routes>
       </LoginContext.Provider>
     </div>

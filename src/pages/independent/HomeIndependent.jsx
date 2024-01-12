@@ -4,7 +4,6 @@ import EventCard from '../../components/EventCard';
 import axios from 'axios';
 import './styles.css';
 import { LoginContext } from '../../context/LoginContext';
-import { Login } from '@mui/icons-material';
 
 const API_URL = 'https://gig-hub-independent.adaptable.app/events';
 
@@ -28,7 +27,7 @@ const HomeIndependent = () => {
   return (
     <div className='HomeIndependent'>
       <h1 className='MainTitle'>Independent Events</h1>
-      <Link to={isLogged ? '/' : '/login'}>Access the edition panel</Link>
+      <Link to={isLogged ? '/create-event' : '/login'}>Create new events</Link>
       <div className='AllIndependent__container'>
         {allIndependent.map(event => {
           return <EventCard key={event.id} events={event} />;

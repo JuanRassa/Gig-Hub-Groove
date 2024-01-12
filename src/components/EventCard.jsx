@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { useLocation } from 'react-router-dom';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function EventCard({ events }) {
   // console.log(events);
@@ -26,7 +29,9 @@ function EventCard({ events }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>Share</Button>
+        <FavoriteBorderIcon className='favorite_empty' />
+        <FavoriteIcon className='favorite_filled' />
+
         {pathname === '/allconcerts' && (
           <Link to={`/allconcerts/${events.identifier}`} size='small'>
             Learn More

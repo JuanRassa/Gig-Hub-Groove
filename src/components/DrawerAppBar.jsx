@@ -29,7 +29,7 @@ function DrawerAppBar() {
           </Typography>
           {!isLogged && <Link to='/login'>Login</Link>}
           {!isLogged && <Link to='/register'>Register</Link>}
-          {isLogged && <Button color='inherit'>Hi {usernameAuth}</Button>}
+          {isLogged && <Link to='my-favorites'>Hi {usernameAuth}</Link>}
           {isLogged && (
             <Button
               onClick={() => {
