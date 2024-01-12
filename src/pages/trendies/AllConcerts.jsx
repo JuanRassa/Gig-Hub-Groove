@@ -3,11 +3,11 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import EventCard from '../../components/EventCard';
 import Filters from '../../components/Filters';
-import SearchBar from '../../components/SearchBar';
+import './styles.css';
 
 function AllConcerts() {
   const [showEvents, setShowEvents] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     geoCountryIso2: '',
     artistName: '',
@@ -17,9 +17,13 @@ function AllConcerts() {
     genreSlug: '',
   });
 
-  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}`;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage}&perPage=9`;
 
   const getEvents = () => {
+    setLoading(true);
+
     axios
       .get(API_URL)
       .then(response => {
@@ -30,10 +34,22 @@ function AllConcerts() {
           console.error(error);
         }
       })
-      .catch(error => {
-        console.log(error);
+      .finally(() => {
+        setLoading(false);
       });
   };
+
+  const handlePrevClick = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage(currentPage => currentPage + 1);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, [currentPage]);
 
   useEffect(() => {
     getEvents();
@@ -41,7 +57,8 @@ function AllConcerts() {
 
   return (
     <div>
-      <h1>Trendy Concerts</h1>
+      <h1 className='mainTitle'>Trendy Concerts</h1>
+
       <Filters
         showEvents={showEvents}
         setShowEvents={setShowEvents}
@@ -49,10 +66,19 @@ function AllConcerts() {
         setFilters={setFilters}
         getEvents={getEvents}
       />
+      <div className='AllConcerts_container'>
+        {loading && <p>Loading...</p>}
+        {!loading &&
+          showEvents.map(event => (
+            <EventCard key={event.identifier} events={event} />
+          ))}
+      </div>
 
-      {showEvents.map(event => (
-        <EventCard key={event.identifier} events={event} />
-      ))}
+      <div>
+        <button onClick={handlePrevClick}>Return</button>
+        {currentPage}
+        <button onClick={handleNextClick}>Next</button>
+      </div>
     </div>
   );
 }

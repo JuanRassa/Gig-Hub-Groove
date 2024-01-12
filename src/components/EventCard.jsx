@@ -16,13 +16,20 @@ function EventCard({ events }) {
   const { pathname } = useLocation();
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
-      <CardMedia component='img' alt='event image' height='140' image={events.image} />
+      <CardMedia
+        component='img'
+        alt='event image'
+        height='140'
+        image={events.image}
+      />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {pathname === '/allconcerts' ? events.startDate : events['start-date']}
+          {pathname === '/allconcerts'
+            ? events.startDate
+            : events['start-date']}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {events.location.name}

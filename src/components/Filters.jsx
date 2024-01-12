@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Filters({
   showEvents,
@@ -8,6 +10,9 @@ function Filters({
   getEvents,
 }) {
   console.log(filters);
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -33,10 +38,9 @@ function Filters({
         !filters.eventType ||
         (event['@type'] && event['@type'] === filters.eventType);
       const matchesDateRange =
-        !filters.eventDateFrom ||
-        !filters.eventDateTo ||
-        (event.date >= filters.eventDateFrom &&
-          event.date <= filters.eventDateTo);
+        !startDate ||
+        !endDate ||
+        (event.date >= startDate && event.date <= endDate);
       const matchesGenre =
         !filters.genreSlug || event.genreSlug === filters.genreSlug;
 
@@ -48,7 +52,8 @@ function Filters({
         matchesGenre
       );
     });
-    console.log('Filtered Events', filtered);
+    // console.log('Filtered Events', filtered);
+    setFilters({ ...filters, eventDateFrom: startDate, eventDateTo: endDate });
     setShowEvents(filtered);
   };
 
@@ -64,10 +69,6 @@ function Filters({
           onChange={handleInputChange}
         >
           <option value=''>Select Country</option>
-          <option value='AD'>
-            AD
-            <img alt='hi' />
-          </option>
           <option value='AD'>Andorra</option>
           <option value='AO'>Angola</option>
           <option value='AR'>Argentina</option>
@@ -131,6 +132,25 @@ function Filters({
       </label>
 
       <label>
+        Date Range:
+        <DatePicker
+          selected={startDate}
+          onChange={date => setStartDate(date)}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+        />
+        <DatePicker
+          selected={endDate}
+          onChange={date => setEndDate(date)}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+        />
+      </label>
+
+      <label>
         Type of event:
         <label>
           <input
@@ -187,7 +207,7 @@ function Filters({
         type='button'
         onClick={() => {
           getEvents();
-          alert(6);
+          // alert(6);
         }}
       >
         Apply
