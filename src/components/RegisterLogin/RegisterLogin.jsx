@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../context/LoginContext';
 
 import './styles.css';
@@ -13,6 +13,7 @@ const RegisterLogin = () => {
 
   const API_URL = `https://gig-hub-independent.adaptable.app/users`;
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,11 +31,11 @@ const RegisterLogin = () => {
         const usersList = response.data;
         const userFound = usersList.find(user => user.username === username);
         if (userFound && userFound.password === password) {
-          alert('WELCOME!', userFound.username);
           setIsLogged(true);
           setUsernameAuth(userFound.username);
           window.sessionStorage.setItem('is_logged', true);
           window.sessionStorage.setItem('logged_username', userFound.username);
+          return navigate('/');
         }
         console.log(usersList);
         console.log('userFound:', userFound);
@@ -44,7 +45,12 @@ const RegisterLogin = () => {
           password: password,
           favorites: [],
         });
-        console.log(response.data);
+
+        if (response.status === 201) {
+          return navigate('/login');
+        }
+        console.log(response.status);
+        console.log(typeof response.status);
       }
     } catch (error) {
       console.log(error);
@@ -57,7 +63,6 @@ const RegisterLogin = () => {
         className='RegisterLoginForm'
         onSubmit={e => {
           e.preventDefault();
-          alert('Submit');
           loginRegisterFunk();
         }}>
         <div className='InputWrapper'>

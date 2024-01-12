@@ -18,9 +18,11 @@ function App() {
   useEffect(() => {
     const is_logged = window.sessionStorage.getItem('is_logged');
 
-    if (is_logged) {
+    if (is_logged === 'true') {
       setIsLogged(is_logged);
       setUsernameAuth(window.sessionStorage.getItem('logged_username'));
+    } else {
+      setIsLogged(false);
     }
   }, []);
 
