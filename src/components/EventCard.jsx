@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 function EventCard({ events }) {
   // console.log(events);
   const { pathname } = useLocation();
-  console.log(pathname);
+  // console.log(pathname);
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
       <CardMedia
@@ -25,7 +25,9 @@ function EventCard({ events }) {
           {events.name}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {pathname === '/allconcerts' ? events.startDate : events['start-date']}
+          {pathname === '/allconcerts'
+            ? events.startDate
+            : events['start-date']}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {events.location.name}

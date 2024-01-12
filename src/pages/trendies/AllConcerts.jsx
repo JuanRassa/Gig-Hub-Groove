@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import EventCard from '../../components/EventCard';
 import Filters from '../../components/Filters';
 import SearchBar from '../../components/SearchBar';
+import './styles.css';
 
 function AllConcerts() {
   const [showEvents, setShowEvents] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [filters, setFilters] = useState({
     geoCountryIso2: '',
     artistName: '',
@@ -24,7 +24,7 @@ function AllConcerts() {
       .get(API_URL)
       .then(response => {
         if (response.data && Array.isArray(response.data.events)) {
-          console.log(response.data.events);
+          // console.log(response.data.events);
           setShowEvents(response.data.events);
         } else {
           console.error(error);
@@ -41,7 +41,7 @@ function AllConcerts() {
 
   return (
     <div>
-      <h1>Trendy Concerts</h1>
+      <h1 className='mainTitle'>Trendy Concerts</h1>
       <Filters
         showEvents={showEvents}
         setShowEvents={setShowEvents}
@@ -49,10 +49,11 @@ function AllConcerts() {
         setFilters={setFilters}
         getEvents={getEvents}
       />
-
-      {showEvents.map(event => (
-        <EventCard key={event.identifier} events={event} />
-      ))}
+      <div className='AllConcerts_container'>
+        {showEvents.map(event => (
+          <EventCard key={event.identifier} events={event} />
+        ))}
+      </div>
     </div>
   );
 }
