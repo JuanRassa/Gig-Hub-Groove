@@ -20,7 +20,7 @@ function AllConcerts() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage.page}&perPage=10`;
+  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage}&perPage=9`;
 
   const getEvents = () => {
     setLoading(true);
@@ -45,8 +45,12 @@ function AllConcerts() {
   };
 
   const handleNextClick = () => {
-    setCurrentPage(prevPage => prevPage + 1);
+    setCurrentPage(currentPage => currentPage + 1);
   };
+
+  useEffect(() => {
+    getEvents();
+  }, [currentPage]);
 
   useEffect(() => {
     getEvents();
@@ -73,7 +77,7 @@ function AllConcerts() {
 
       <div>
         <button onClick={handlePrevClick}>Return</button>
-        {currentPage.page}
+        {currentPage}
         <button onClick={handleNextClick}>Next</button>
       </div>
     </div>
