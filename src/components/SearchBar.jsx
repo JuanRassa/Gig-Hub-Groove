@@ -1,16 +1,29 @@
 import React from 'react';
 import { useState } from 'react';
 
-function SearchBar({ onSearch }) {
-  const [searchTerm, setSearchTerm] = useState('');
+function SearchBar({ allIndependent, setShowIndependent }) {
+  const [search, setSearch] = useState('');
 
-  const handleSearch = () => {
-    onSearch(searchTerm);
+  const searchedEvents = query => {
+    const filteredIndependent = allIndependent.filter(event => {
+      const eventNameMatches = event.name
+        .toLowerCase()
+        .includes(query.toLowerCase());
+
+      const performerMatches = event.performer.some(performer =>
+        performer.name.toLowerCase().includes(query.toLowerCase())
+      );
+
+      return eventNameMatches || performerMatches;
+    });
+    console.log('filteredIndependent', filteredIndependent);
+    setShowIndependent(filteredIndependent);
   };
 
-  // const handleSearch = term => {
-  //   setSearchTerm(term);
-  // };
+  const handleSearch = e => {
+    setSearch(e.target.value);
+    searchedEvents(e.target.value);
+  };
 
   return (
     <div>
@@ -18,10 +31,10 @@ function SearchBar({ onSearch }) {
       <input
         type='text'
         placeholder='search..'
-        value={searchTerm}
-        onChange={e => onSearchTerm(e.target.value)}
+        value={search}
+        onChange={handleSearch}
       ></input>
-      <button onClick={handleSearch}>Search</button>
+      {/* <button onClick={handleSearch}>Search</button> */}
     </div>
   );
 }

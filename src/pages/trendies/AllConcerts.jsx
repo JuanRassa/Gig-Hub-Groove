@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import EventCard from '../../components/EventCard';
 import Filters from '../../components/Filters';
-import SearchBar from '../../components/SearchBar';
 import './styles.css';
 
 function AllConcerts() {
