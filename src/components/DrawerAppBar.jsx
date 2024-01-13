@@ -7,8 +7,15 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import LeftDrawer from './LeftDrawer';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { LoginContext } from '../context/LoginContext';
 
 function DrawerAppBar() {
+  const {
+    isLoggedCtx: [isLogged, setIsLogged],
+    usernameAuthCtx: [usernameAuth],
+  } = useContext(LoginContext);
+
   return (
     <Box sx={{ flexGrow: 10 }}>
       <AppBar position='static'>
@@ -20,7 +27,20 @@ function DrawerAppBar() {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             <Link to='/'>Gig Hub Groove</Link>
           </Typography>
-          <Button color='inherit'>Login</Button>
+          {!isLogged && <Link to='/login'>Login</Link>}
+          {!isLogged && <Link to='/register'>Register</Link>}
+          {isLogged && <Button color='inherit'>Hi {usernameAuth}</Button>}
+          {isLogged && (
+            <Button
+              onClick={() => {
+                setIsLogged(false);
+                window.sessionStorage.setItem('is_logged', false);
+                window.sessionStorage.setItem('logged_username', '');
+              }}
+              color='inherit'>
+              Log out
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
