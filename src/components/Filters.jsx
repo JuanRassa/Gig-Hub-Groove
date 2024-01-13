@@ -24,10 +24,6 @@ function Filters({
     setFilters({ ...filters, eventType: value });
   };
 
-  const handleSearchChange = e => {
-    setSearchTerm(e.target.value);
-  };
-
   const handleFilter = () => {
     const filtered = showEvents.filter(event => {
       const matchesCountry =

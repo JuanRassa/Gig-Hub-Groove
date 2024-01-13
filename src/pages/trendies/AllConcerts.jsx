@@ -8,6 +8,7 @@ import './styles.css';
 
 function AllConcerts() {
   const [showEvents, setShowEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     geoCountryIso2: '',
     artistName: '',
@@ -17,22 +18,34 @@ function AllConcerts() {
     genreSlug: '',
   });
 
-  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}`;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage.page}&perPage=10`;
 
   const getEvents = () => {
+    setLoading(true);
+
     axios
       .get(API_URL)
       .then(response => {
         if (response.data && Array.isArray(response.data.events)) {
-          // console.log(response.data.events);
+          console.log(response.data.events);
           setShowEvents(response.data.events);
         } else {
           console.error(error);
         }
       })
-      .catch(error => {
-        console.log(error);
+      .finally(() => {
+        setLoading(false);
       });
+  };
+
+  const handlePrevClick = () => {
+    setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage(prevPage => prevPage + 1);
   };
 
   useEffect(() => {
@@ -42,6 +55,7 @@ function AllConcerts() {
   return (
     <div>
       <h1 className='mainTitle'>Trendy Concerts</h1>
+
       <Filters
         showEvents={showEvents}
         setShowEvents={setShowEvents}
@@ -50,9 +64,17 @@ function AllConcerts() {
         getEvents={getEvents}
       />
       <div className='AllConcerts_container'>
-        {showEvents.map(event => (
-          <EventCard key={event.identifier} events={event} />
-        ))}
+        {loading && <p>Loading...</p>}
+        {!loading &&
+          showEvents.map(event => (
+            <EventCard key={event.identifier} events={event} />
+          ))}
+      </div>
+
+      <div>
+        <button onClick={handlePrevClick}>Return</button>
+        {currentPage.page}
+        <button onClick={handleNextClick}>Next</button>
       </div>
     </div>
   );
