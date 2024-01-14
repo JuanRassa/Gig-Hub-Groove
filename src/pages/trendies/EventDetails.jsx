@@ -73,17 +73,29 @@ function EventDetails() {
                 {event.performer &&
                   Array.isArray(event.performer) &&
                   (() => {
-                    const uniqueGenres = [];
+                    const uniqueGenres = new Set();
                     event.performer.forEach(performer => {
-                      if (
-                        performer.genre &&
-                        !uniqueGenres.includes(performer.genre)
+                      if (performer.genre && Array.isArray(performer.genre)) {
+                        performer.genre.forEach(genre => {
+                          if (
+                            typeof genre === 'string' &&
+                            genre.trim() !== ''
+                          ) {
+                            uniqueGenres.add(genre.trim());
+                          }
+                        });
+                      } else if (
+                        typeof performer.genre === 'string' &&
+                        performer.genre.trim() !== ''
                       ) {
-                        uniqueGenres.push(performer.genre);
+                        uniqueGenres.add(performer.genre.trim());
                       }
                     });
-                    return uniqueGenres.length > 0
-                      ? uniqueGenres.join(', ')
+
+                    const filteredGenres = Array.from(uniqueGenres);
+
+                    return filteredGenres.length > 0
+                      ? filteredGenres.join(',')
                       : '';
                   })()}
               </p>
