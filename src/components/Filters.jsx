@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './styles.css';
 
 function Filters({
   showEvents,
@@ -58,12 +59,13 @@ function Filters({
   };
 
   return (
-    <div>
+    <div className='filters-container'>
       <h3>Filter</h3>
 
-      <label>
+      <label className='filter-label'>
         Country:
         <select
+          className='filter-select'
           name='geoCountryIso2'
           value={filters.geoCountryIso2}
           onChange={handleInputChange}
@@ -131,9 +133,13 @@ function Filters({
         />
       </label>
 
-      <label>
-        Date Range:
+      <div className='date-range-label'>
+        <label>Date Range:</label>
+      </div>
+
+      <div className='date-picker-container'>
         <DatePicker
+          className='filter-datepicker'
           selected={startDate}
           onChange={date => setStartDate(date)}
           selectsStart
@@ -141,6 +147,7 @@ function Filters({
           endDate={endDate}
         />
         <DatePicker
+          className='filter-datepicker'
           selected={endDate}
           onChange={date => setEndDate(date)}
           selectsEnd
@@ -148,9 +155,9 @@ function Filters({
           endDate={endDate}
           minDate={startDate}
         />
-      </label>
+      </div>
 
-      <label>
+      <label className='filter-label'>
         Type of event:
         <label>
           <input
@@ -174,9 +181,10 @@ function Filters({
         </label>
       </label>
 
-      <label>
+      <label className='filter-label'>
         Genre:
         <select
+          className='filter-select'
           name='genreSlug'
           value={filters.genreSlug}
           onChange={handleInputChange}
@@ -204,6 +212,7 @@ function Filters({
       </label>
 
       <button
+        className='apply-button'
         type='button'
         onClick={() => {
           getEvents();

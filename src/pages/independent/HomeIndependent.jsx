@@ -10,6 +10,7 @@ const API_URL = 'https://gig-hub-independent.adaptable.app/events';
 
 const HomeIndependent = () => {
   const [allIndependent, setAllIndependent] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const {
     isLoggedCtx: [isLogged],
@@ -20,11 +21,16 @@ const HomeIndependent = () => {
   // console.log(showIndependent);
 
   const getAllIndependent = async () => {
-    const response = await axios.get(API_URL);
-
-    const data = response.data;
-    setAllIndependent(data);
-    setShowIndependent(data);
+    try {
+      const response = await axios.get(API_URL);
+      const data = response.data;
+      setAllIndependent(data);
+      setShowIndependent(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -35,12 +41,19 @@ const HomeIndependent = () => {
     <div className='HomeIndependent'>
       <h1 className='MainTitle'>Independent Events</h1>
       <Link to={isLogged ? '/create-event' : '/login'}>Create new events</Link>
-      <SearchBar allIndependent={allIndependent} setShowIndependent={setShowIndependent} />
-      <div className='AllIndependent__container'>
-        {showIndependent.map(event => {
-          return <EventCard key={event.id} events={event} />;
-        })}
-      </div>
+      <SearchBar
+        allIndependent={allIndependent}
+        setShowIndependent={setShowIndependent}
+      />
+      {loading ? (
+        <p>Loanding...</p>
+      ) : (
+        <div className='AllIndependent__container'>
+          {showIndependent.map(event => {
+            return <EventCard key={event.id} events={event} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

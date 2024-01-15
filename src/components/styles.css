@@ -1,0 +1,68 @@
+.filters-container {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  background-color: #fdf8f2;
+  border-radius: 8px;
+}
+
+.filter-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filter-select,
+.filter-input,
+.filter-radio {
+  width: 50%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.filter-select:hover,
+.filter-input:hover,
+.filter-radio:hover,
+.filter-select:focus,
+.filter-input:focus,
+.filter-radio:focus {
+  border-color: #f76320;
+}
+
+.apply-button {
+  background-color: #f76320;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.apply-button:hover {
+  background-color: #45a049;
+}
+
+.date-range-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.date-picker-container {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-datepicker {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.filter-datepicker:hover,
+.filter-datepicker:focus {
+  border-color: #66afe9;
+}

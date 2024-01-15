@@ -11,7 +11,9 @@ function EventDetails() {
 
   useEffect(() => {
     axios
-      .get(`https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`)
+      .get(
+        `https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`
+      )
       .then(response => {
         // console.log('API Response:', response.data);
         const eventFromApi = response.data.event;
@@ -34,10 +36,24 @@ function EventDetails() {
           <div>
             <h2>{event.name}</h2>
             <h3>{event.location && event.location.name}</h3>
-            <p>{event.location && event.location.address && event.location.address.addressLocality}</p>
-            <p>{event.location && event.location.address && event.location.address.addressCountry.name}</p>
-            {event.location && event.location.address && event.location.address.addressCountry.identifier}
-            <p>{event.location && event.location.address && event.location.address.streetAddress}</p>
+            <p>
+              {event.location &&
+                event.location.address &&
+                event.location.address.addressLocality}
+            </p>
+            <p>
+              {event.location &&
+                event.location.address &&
+                event.location.address.addressCountry.name}
+            </p>
+            {event.location &&
+              event.location.address &&
+              event.location.address.addressCountry.identifier}
+            <p>
+              {event.location &&
+                event.location.address &&
+                event.location.address.streetAddress}
+            </p>
           </div>
           <div>
             <h3>{event['@type']}</h3>
@@ -46,25 +62,53 @@ function EventDetails() {
             </p>
           </div>
           <div>
-            <p>{event.performer && Array.isArray(event.performer) && event.performer.map(performer => performer.name).join(', ')} </p>
-            {(event['@type'] === 'Concert' || event['@type'] === 'Festival') && (
+            <p>
+              {event.performer &&
+                Array.isArray(event.performer) &&
+                event.performer
+                  .map(performer => performer.name)
+                  .join(', ')}{' '}
+            </p>
+            {(event['@type'] === 'Concert' ||
+              event['@type'] === 'Festival') && (
               <p>
                 {event.performer &&
                   Array.isArray(event.performer) &&
                   (() => {
-                    const uniqueGenres = [];
+                    const uniqueGenres = new Set();
                     event.performer.forEach(performer => {
-                      if (performer.genre && !uniqueGenres.includes(performer.genre)) {
-                        uniqueGenres.push(performer.genre);
+                      if (performer.genre && Array.isArray(performer.genre)) {
+                        performer.genre.forEach(genre => {
+                          if (
+                            typeof genre === 'string' &&
+                            genre.trim() !== ''
+                          ) {
+                            uniqueGenres.add(genre.trim());
+                          }
+                        });
+                      } else if (
+                        typeof performer.genre === 'string' &&
+                        performer.genre.trim() !== ''
+                      ) {
+                        uniqueGenres.add(performer.genre.trim());
                       }
                     });
-                    return uniqueGenres.length > 0 ? uniqueGenres.join(', ') : '';
+
+                    const filteredGenres = Array.from(uniqueGenres);
+
+                    return filteredGenres.length > 0
+                      ? filteredGenres.join(',')
+                      : '';
                   })()}
               </p>
             )}
           </div>
           <p>Buy your ticket at:</p>
-          <p>{event.offers && Array.isArray(event.offers) && event.offers.map(offers => offers.url)}</p>
+          <p>
+            {event.offers &&
+              Array.isArray(event.offers) &&
+              event.offers.map(offers => offers.url)}
+          </p>
           <iframe
             width='600'
             height='450'
@@ -73,7 +117,8 @@ function EventDetails() {
             allowFullScreen
             referrerPolicy='no-referrer-when-downgrade'
             src='https://www.google.com/maps/embed/v1/place?key=
-    &q=Space+Needle,Seattle+WA'></iframe>
+    &q=Space+Needle,Seattle+WA'
+          ></iframe>
         </div>
       ) : (
         <p>Loading...</p>
