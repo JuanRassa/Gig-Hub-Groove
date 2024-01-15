@@ -5,6 +5,8 @@ import EventCard from '../../components/EventCard';
 import Filters from '../../components/Filters';
 import './styles.css';
 
+let API_KEY = import.meta.env.VITE_API_KEY;
+
 function AllConcerts() {
   const [showEvents, setShowEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +21,7 @@ function AllConcerts() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage}&perPage=12`;
+  let API_URL = `https://www.jambase.com/jb-api/v1/events?apikey=${API_KEY}&geoCountryIso2=${filters.geoCountryIso2}&eventDateFrom=${filters.eventDateFrom}&eventDateTo=${filters.eventDateTo}&genreSlug=${filters.genreSlug}&eventType=${filters.eventType}&artistName=${filters.artistName}&page=${currentPage}&perPage=12`;
 
   const getEvents = () => {
     setLoading(true);
