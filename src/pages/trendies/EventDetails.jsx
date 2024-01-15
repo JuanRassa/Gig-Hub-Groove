@@ -3,13 +3,15 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+let API_KEY = import.meta.env.VITE_API_KEY;
+
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76`)
+      .get(`https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`)
       .then(response => {
         // console.log('API Response:', response.data);
         const eventFromApi = response.data.event;
