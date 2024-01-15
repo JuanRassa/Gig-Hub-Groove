@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+let API_KEY = import.meta.env.VITE_API_KEY;
+
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
@@ -10,7 +12,7 @@ function EventDetails() {
   useEffect(() => {
     axios
       .get(
-        `https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=34602fe4-774f-4365-8a0d-ca7139ae2e76`
+        `https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`
       )
       .then(response => {
         // console.log('API Response:', response.data);
@@ -107,6 +109,16 @@ function EventDetails() {
               Array.isArray(event.offers) &&
               event.offers.map(offers => offers.url)}
           </p>
+          <iframe
+            width='600'
+            height='450'
+            style={{ border: 0 }}
+            loading='lazy'
+            allowFullScreen
+            referrerPolicy='no-referrer-when-downgrade'
+            src='https://www.google.com/maps/embed/v1/place?key=
+    &q=Space+Needle,Seattle+WA'
+          ></iframe>
         </div>
       ) : (
         <p>Loading...</p>

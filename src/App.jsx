@@ -45,7 +45,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/my-favorites' element={<Favorites />} />
-          <Route path='/new-event' element={<CreateEvent />} />
+          <Route path='/create-event' element={<CreateEvent />} />
         </Routes>
       </LoginContext.Provider>
     </div>
