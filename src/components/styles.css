@@ -66,3 +66,9 @@
 .filter-datepicker:focus {
   border-color: #66afe9;
 }
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root * {
+  background-color: #292a2a;
+  color: #fdf8f2;
+  text-decoration: none;
+}

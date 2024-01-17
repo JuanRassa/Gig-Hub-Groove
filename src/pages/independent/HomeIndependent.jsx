@@ -40,11 +40,14 @@ const HomeIndependent = () => {
   return (
     <div className='HomeIndependent'>
       <h1 className='MainTitle'>Independent Events</h1>
-      <Link to={isLogged ? '/create-event' : '/login'}>Create new events</Link>
-      <SearchBar
-        allIndependent={allIndependent}
-        setShowIndependent={setShowIndependent}
-      />
+      <Link
+        to={isLogged ? '/create-event' : '/login'}
+        onClick={() => {
+          window.sessionStorage.setItem('triedToCreateOrEdit', 'yes');
+        }}>
+        Create new events
+      </Link>
+      <SearchBar allIndependent={allIndependent} setShowIndependent={setShowIndependent} />
       {loading ? (
         <p>Loanding...</p>
       ) : (
