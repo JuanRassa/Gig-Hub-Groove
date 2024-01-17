@@ -28,7 +28,8 @@ const CreateEvent = () => {
   const [event_event_venuePostalCode, set_Event_venuePostalCode] = useState('');
   // Type of Event:
   const [event_type_value, set_Event_type_value] = useState('concert');
-  // LineUp Info:
+  // Performers Info:
+  const [event_performer_array, set_Event_performer_array] = useState([]);
 
   /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
   /* *** *** *** *** *** Input Handlers Funks *** *** *** *** *** ***  */
@@ -78,7 +79,15 @@ const CreateEvent = () => {
       set_Event_type_value('festival');
     }
   };
-  // LineUp Info:
+  // Performers Info:
+  const event_ADD_performer_array_funk = () => {
+    set_Event_performer_array(prev => [...prev, { name: '' }]);
+  };
+  const handleChange = (index, event) => {
+    const newInputFields = [...event_performer_array];
+    newInputFields[index].value = event.target.value;
+    set_Event_performer_array(newInputFields);
+  };
 
   // Submit:
   const handleSubmit = e => {
@@ -99,7 +108,7 @@ const CreateEvent = () => {
       capacity: event_event_venueCapacity || null,
       postalAdress: event_event_venuePostalCode || null,
     },
-    performer: [],
+    performer: event_performer_array,
     image: event_image_url || null,
     description: event_event_description || null,
   };
@@ -137,9 +146,11 @@ const CreateEvent = () => {
             event_event_venueType_ctx: [event_event_venueType],
             event_event_venueCapacity_ctx: [event_event_venueCapacity],
             event_event_venuePostalCode_ctx: [event_event_venuePostalCode],
+            // LineUp Info:
+            event_performer_array_ctx: [event_performer_array, set_Event_performer_array],
           },
           funks: {
-            // General Info:
+            // Performers Info:
             event_name_funk_ctx: event_name_funk,
             event_type_concert_funk_ctx: event_type_concert_funk,
             event_type_festival_funk_ctx: event_type_festival_funk,
@@ -154,6 +165,9 @@ const CreateEvent = () => {
             event_event_venueType_funk_ctx: event_event_venueType_funk,
             event_event_venueCapacity_funk_ctx: event_event_venueCapacity_funk,
             event_event_venuePostalCode_funk_ctx: event_event_venuePostalCode_funk,
+            // Performers Info:
+            event_ADD_performer_array_funk_ctx: event_ADD_performer_array_funk,
+            handleChange_ctx: handleChange,
           },
         }}>
         <form onSubmit={handleSubmit}>
