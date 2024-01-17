@@ -11,7 +11,7 @@ import EventDetailsIndependent from './pages/independent/EventDetailsIndependent
 import Login from './pages/users/Login';
 import Register from './pages/users/Register';
 import Favorites from './pages/users/Favorites';
-import CreateEvent from './pages/independent/CreateEvent';
+import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
