@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
-import { countriesList } from '../../../components/helpers/countriesList';
 import { CreateFormContext } from '../../../context/CreateFormContext';
 
+import GeneralInfo from './FormSections/GeneralInfo';
+import LocationInformation from './FormSections/LocationInformation';
+import TypeOfEvent from './FormSections/TypeOfEvent';
+import LineUpInformation from './FormSections/LineUpInformation';
+
 const CreateEvent = () => {
-  // States:
+  /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
+  /* *** *** *** *** *** *** States *** *** *** *** *** *** *** ***  */
+  // General Info:
+  const [event_name, set_Event_name] = useState('');
+  const [event_start_date, set_Event_start_date] = useState('');
+  const [event_end_date, set_Event_end_date] = useState('');
+  const [event_image_url, set_Event_image_url] = useState('');
+  const [event_event_description, set_Event_event_description] = useState('');
+
+  // Location Info:
+  // Type of Event:
   const [event_type_value, set_Event_type_value] = useState('concert');
+  // LineUp Info:
 
-  console.log('Log do Juan: ', [{ event_type_value: event_type_value }]);
-
-  // Input Handlers:
+  /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
+  /* *** *** *** *** *** Input Handlers Funks *** *** *** *** *** ***  */
+  // General Info:
+  const event_name_funk = e => {
+    set_Event_name(e.target.value);
+  };
+  const event_start_date_funk = e => {
+    set_Event_start_date(e.target.value);
+  };
+  const event_end_date_funk = e => {
+    set_Event_end_date(e.target.value);
+  };
+  const event_image_url_funk = e => {
+    set_Event_image_url(e.target.value);
+  };
+  const event_event_description_funk = e => {
+    set_Event_event_description(e.target.value);
+  };
+  // Location Info:
+  // Type of Event
   const event_type_concert_funk = e => {
     console.log('event_type_concert_funk', e.target.checked);
     if (e.target.checked) {
@@ -20,117 +52,63 @@ const CreateEvent = () => {
       set_Event_type_value('festival');
     }
   };
+  // LineUp Info:
+
+  // Submit:
   const handleSubmit = e => {
     e.preventDefault();
     alert('NEW');
   };
+  /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
+
+  const createNewEvent_body = {
+    type: event_type_value || null,
+    name: event_name || null,
+    geoCountryIso2: '' || null,
+    geoCityName: '' || null,
+    'start-date': event_start_date || null,
+    'end-date': event_end_date || null,
+    location: {
+      type: '' || null,
+      name: '' || null,
+      capacity: '' || null,
+      postalAdress: '' || null,
+    },
+    performer: [],
+    image: event_image_url || null,
+    description: event_event_description || null,
+  };
+
+  console.log('Log do Juan: ', createNewEvent_body);
+
   return (
     <div className='CreateEvent'>
       <h2>Create a new event</h2>
-      <CreateFormContext.Provider value=''>
+      <CreateFormContext.Provider
+        value={{
+          states: {
+            event_name_ctx: [event_name],
+            event_type_ctx: [event_type_value],
+            event_start_date_ctx: [event_start_date],
+            event_end_date_ctx: [event_end_date],
+            event_image_url_ctx: [event_image_url],
+            event_event_description_ctx: [event_event_description],
+          },
+          funks: {
+            event_name_funk_ctx: event_name_funk,
+            event_type_concert_funk_ctx: event_type_concert_funk,
+            event_type_festival_funk_ctx: event_type_festival_funk,
+            event_start_date_funk_ctx: event_start_date_funk,
+            event_end_date_funk_ctx: event_end_date_funk,
+            event_image_url_funk_ctx: event_image_url_funk,
+            event_event_description_funk_ctx: event_event_description_funk,
+          },
+        }}>
         <form onSubmit={handleSubmit}>
-          <fieldset className='CreateEvent_generalInfo'>
-            <legend>General Information</legend>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_start-date'>
-                Start Date:
-                <input type='date' name='event_start-date' id='event_start-date' />
-              </label>
-              <label htmlFor='event_end-date'>
-                End Date:
-                <input type='date' name='event_end-date' id='event_end-date' />
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_description'>
-                Description:
-                <textarea name='event_description' id='event_description' cols='30' rows='10'></textarea>
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_image'>
-                Image URL:
-                <input type='url' name='event_image' id='event_image' />
-              </label>
-            </div>
-          </fieldset>
-          <fieldset className='CreateEvent_location'>
-            <legend>Location Information</legend>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_geoCountryIso2'>
-                Country:
-                <select name='event_geoCountryIso2' id='event_geoCountryIso2'>
-                  {countriesList.length > 0 &&
-                    countriesList.map(country => (
-                      <option key={country.geoCountryIso2} value={country.geoCountryIso2}>
-                        {country.countryName}
-                      </option>
-                    ))}
-                </select>
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_geoCityName'>
-                City:
-                <input type='text' name='event_geoCityName' id='event_geoCityName' />
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_venueName'>
-                Venue's Name:
-                <input type='text' name='event_venueName' id='event_venueName' />
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_venueType'>
-                Venue's Type:
-                <input type='text' name='event_venueType' id='event_venueType' />
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_venueCapacity'>
-                Venue's Capacity:
-                <input type='text' name='event_venueCapacity' id='event_venueCapacity' />
-              </label>
-            </div>
-            <div className='CreateEvent_inputContainer'>
-              <label htmlFor='event_venuePostalCode'>
-                Venue's Postal Code:
-                <input type='text' name='event_venuePostalCode' id='event_venuePostalCode' />
-              </label>
-            </div>
-          </fieldset>
-          <fieldset className='CreateEvent_artistsInfo'>
-            <legend>Type of Event</legend>
-            <label htmlFor='event_concert'>
-              Concert
-              <input
-                type='radio'
-                name='event_type_concert'
-                id='event_concert'
-                defaultChecked
-                value='concert'
-                onChange={e => {
-                  event_type_concert_funk(e);
-                }}
-              />
-            </label>
-            <label htmlFor='event_festival'>
-              Festival
-              <input
-                type='radio'
-                name='event_type_concert'
-                id='event_festival'
-                value='festival'
-                onChange={e => {
-                  event_type_festival_funk(e);
-                }}
-              />
-            </label>
-          </fieldset>
-          <fieldset className='CreateEvent_artistsInfo'>
-            <legend>Lineup Information</legend>
-          </fieldset>
+          <GeneralInfo />
+          <LocationInformation />
+          <TypeOfEvent />
+          <LineUpInformation />
           <button type='submit'>Create</button>
         </form>
       </CreateFormContext.Provider>
