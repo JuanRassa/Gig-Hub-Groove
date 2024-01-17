@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../context/LoginContext';
 
@@ -35,7 +36,12 @@ const RegisterLogin = () => {
           setUsernameAuth(userFound.username);
           window.sessionStorage.setItem('is_logged', true);
           window.sessionStorage.setItem('logged_username', userFound.username);
-          return navigate('/');
+          if (window.sessionStorage.getItem('triedToCreateOrEdit') === 'yes') {
+            window.sessionStorage.setItem('triedToCreateOrEdit', 'no');
+            return navigate('/create-event');
+          } else {
+            return navigate('/');
+          }
         }
         console.log(usersList);
         console.log('userFound:', userFound);
