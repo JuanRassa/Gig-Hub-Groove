@@ -16,7 +16,8 @@ import { LoginContext } from '../context/LoginContext';
 
 function EventCard({ events }) {
   const {
-    triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
+    isLoggedCtx: [isLogged],
+    triggerIndependentGetCtx: [, setTriggerIndependentGet],
   } = useContext(LoginContext);
   // console.log(events);
   const { pathname } = useLocation();
@@ -51,6 +52,8 @@ function EventCard({ events }) {
         <FavoriteIcon className='favorite_filled' />
         {pathname === '/independent' && (
           <button
+            style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
+            className={`${!isLogged ? 'disabled' : ''}`}
             onClick={() => {
               deleteEventIdependent(events.id);
             }}>
