@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { CreateFormContext } from '../../../../context/CreateFormContext';
+import { CreateFormContext } from '../../../context/CreateFormContext';
 
 const LineUpInformation = () => {
   const {

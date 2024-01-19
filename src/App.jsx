@@ -16,6 +16,8 @@ import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [usernameAuth, setUsernameAuth] = useState('');
+  const [userIdAuth, setUserIdAuth] = useState('');
+  const [triggerIndependentGet, setTriggerIndependentGet] = useState(false);
 
   useEffect(() => {
     const is_logged = window.sessionStorage.getItem('is_logged');
@@ -34,6 +36,8 @@ function App() {
         value={{
           isLoggedCtx: [isLogged, setIsLogged],
           usernameAuthCtx: [usernameAuth, setUsernameAuth],
+          userIdAuthCtx: [userIdAuth, setUserIdAuth],
+          triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
         }}>
         <DrawerAppBar />
         <Routes>

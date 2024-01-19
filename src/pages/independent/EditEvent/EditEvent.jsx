@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CreateFormContext } from '../../../context/CreateFormContext';
 
-import GeneralInfo from './../FormSections/GeneralInfo';
-import LocationInformation from './../FormSections/LocationInformation';
-import TypeOfEvent from './../FormSections/TypeOfEvent';
-import LineUpInformation from './../FormSections/LineUpInformation';
+import GeneralInfo from './FormSections/GeneralInfo';
+import LocationInformation from './FormSections/LocationInformation';
+import TypeOfEvent from './FormSections/TypeOfEvent';
+import LineUpInformation from './FormSections/LineUpInformation';
 
-const CreateEvent = () => {
+const EditEvent = () => {
   const API_URL = `https://gig-hub-independent.adaptable.app/events`;
   const navigate = useNavigate();
   /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
@@ -127,7 +127,7 @@ const CreateEvent = () => {
   console.log('Log do Juan: ', createNewEvent_body);
 
   return (
-    <div className='CreateEvent'>
+    <div className='EditEvent'>
       <h2>Create a new event</h2>
       <CreateFormContext.Provider
         value={{
@@ -182,4 +182,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default EditEvent;

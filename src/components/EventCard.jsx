@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,25 +12,35 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+import { LoginContext } from '../context/LoginContext';
+
 function EventCard({ events }) {
+  const {
+    triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
+  } = useContext(LoginContext);
   // console.log(events);
   const { pathname } = useLocation();
+
+  const deleteEventIdependent = async id => {
+    try {
+      const response = await axios.delete(`https://gig-hub-independent.adaptable.app/events/${id}`);
+      if (response.status === 200) {
+        setTriggerIndependentGet(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
-      <CardMedia
-        component='img'
-        alt='event image'
-        height='140'
-        image={events.image}
-      />
+      <CardMedia component='img' alt='event image' height='140' image={events.image} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {pathname === '/allconcerts'
-            ? events.startDate
-            : events['start-date']}
+          {pathname === '/allconcerts' ? events.startDate : events['start-date']}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {events.location.name}
@@ -38,7 +49,14 @@ function EventCard({ events }) {
       <CardActions>
         <FavoriteBorderIcon className='favorite_empty' />
         <FavoriteIcon className='favorite_filled' />
-
+        {pathname === '/independent' && (
+          <button
+            onClick={() => {
+              deleteEventIdependent(events.id);
+            }}>
+            Delete {events.id}
+          </button>
+        )}
         {pathname === '/allconcerts' && (
           <Link to={`/allconcerts/${events.identifier}`} size='small'>
             Learn More

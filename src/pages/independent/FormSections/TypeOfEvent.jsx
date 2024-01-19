@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CreateFormContext } from '../../../../context/CreateFormContext';
+import { CreateFormContext } from '../../../context/CreateFormContext';
 
 const TypeOfEvent = () => {
   const {
