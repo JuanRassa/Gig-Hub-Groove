@@ -24,6 +24,10 @@ const HomeIndependent = () => {
     try {
       const response = await axios.get(API_URL);
       const data = response.data;
+      // const eventsWithWishlistInfo = data.map(event => ({
+      //   ...event,
+      //   isInWishlist: isEventInWishList(event.id),
+      // }));
       setAllIndependent(data);
       setShowIndependent(data);
     } catch (error) {
@@ -44,10 +48,14 @@ const HomeIndependent = () => {
         to={isLogged ? '/create-event' : '/login'}
         onClick={() => {
           window.sessionStorage.setItem('triedToCreateOrEdit', 'yes');
-        }}>
+        }}
+      >
         Create new events
       </Link>
-      <SearchBar allIndependent={allIndependent} setShowIndependent={setShowIndependent} />
+      <SearchBar
+        allIndependent={allIndependent}
+        setShowIndependent={setShowIndependent}
+      />
       {loading ? (
         <p>Loanding...</p>
       ) : (

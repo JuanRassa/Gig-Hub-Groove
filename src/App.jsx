@@ -34,14 +34,18 @@ function App() {
         value={{
           isLoggedCtx: [isLogged, setIsLogged],
           usernameAuthCtx: [usernameAuth, setUsernameAuth],
-        }}>
+        }}
+      >
         <DrawerAppBar />
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/allconcerts' element={<AllConcerts />} />
           <Route path='/allconcerts/:eventId' element={<EventDetails />} />
           <Route path='/independent' element={<HomeIndependent />} />
-          <Route path='/independent/:eventId' element={<EventDetailsIndependent />} />
+          <Route
+            path='/independent/:eventId'
+            element={<EventDetailsIndependent />}
+          />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/my-favorites' element={<Favorites />} />

@@ -30,7 +30,12 @@ function AllConcerts() {
       .get(API_URL)
       .then(response => {
         if (response.data && Array.isArray(response.data.events)) {
-          console.log(response.data.events);
+          // const eventsWithWishlistInfo = response.data.events.map(event => ({
+          //   ...event,
+          //   isInWishlist: isEventInWishList(event.id),
+          // }));
+          // console.log(response.data.events);
+          // setShowEvents(eventsWithWishlistInfo);
           setShowEvents(response.data.events);
         } else {
           console.error(error);
@@ -61,10 +66,19 @@ function AllConcerts() {
     <div>
       <h1 className='mainTitle'>Trendy Concerts</h1>
 
-      <Filters showEvents={showEvents} setShowEvents={setShowEvents} filters={filters} setFilters={setFilters} getEvents={getEvents} />
+      <Filters
+        showEvents={showEvents}
+        setShowEvents={setShowEvents}
+        filters={filters}
+        setFilters={setFilters}
+        getEvents={getEvents}
+      />
       <div className='AllConcerts_container'>
         {loading && <p>Loading...</p>}
-        {!loading && showEvents.map(event => <EventCard key={event.identifier} events={event} />)}
+        {!loading &&
+          showEvents.map(event => (
+            <EventCard key={event.identifier} events={event} />
+          ))}
       </div>
 
       <div>

@@ -11,9 +11,25 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function EventCard({ events }) {
+function EventCard({
+  events,
+  isInWishList,
+  removeEventWishList,
+  addEventWishList,
+}) {
   // console.log(events);
+  console.log(isInWishList);
   const { pathname } = useLocation();
+  // const isEventInFavorites = isInWishList(events.id);
+
+  // const handleToggleWishlist = () => {
+  //   if (isEventInFavorites(events.id)) {
+  //     removeEventWishList(events.id);
+  //   } else {
+  //     addEventWishList(events.id);
+  //   }
+  // };
+
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
       <CardMedia
@@ -36,8 +52,17 @@ function EventCard({ events }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <FavoriteBorderIcon className='favorite_empty' />
-        <FavoriteIcon className='favorite_filled' />
+        {/* {isEventInFavorites ? (
+          <FavoriteIcon
+            className='favorite_filled'
+            onClick={handleToggleWishlist}
+          />
+        ) : (
+          <FavoriteBorderIcon
+            className='favorite_empty'
+            onClick={handleToggleWishlist}
+          />
+        )} */}
 
         {pathname === '/allconcerts' && (
           <Link to={`/allconcerts/${events.identifier}`} size='small'>
