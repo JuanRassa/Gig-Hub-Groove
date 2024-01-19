@@ -42,6 +42,7 @@ function DrawerAppBar() {
                 setIsLogged(false);
                 window.sessionStorage.setItem('is_logged', false);
                 window.sessionStorage.setItem('logged_username', '');
+                window.sessionStorage.setItem('logged_id', '');
               }}
               color='inherit'>
               Log out

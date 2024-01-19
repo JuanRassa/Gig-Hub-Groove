@@ -60,6 +60,14 @@ function EventCard({ events }) {
             Delete {events.id}
           </button>
         )}
+        {pathname === '/independent' && (
+          <Link
+            to={`/independent/edit-event/${events.id}`}
+            style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
+            className={`${!isLogged ? 'disabled' : ''}`}>
+            Edit {events.id}
+          </Link>
+        )}
         {pathname === '/allconcerts' && (
           <Link to={`/allconcerts/${events.identifier}`} size='small'>
             Learn More

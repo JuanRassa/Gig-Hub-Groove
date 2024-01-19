@@ -12,6 +12,7 @@ import Login from './pages/users/Login';
 import Register from './pages/users/Register';
 import Favorites from './pages/users/Favorites';
 import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
+import EditEvent from './pages/independent/EditEvent/EditEvent';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -25,6 +26,7 @@ function App() {
     if (is_logged === 'true') {
       setIsLogged(is_logged);
       setUsernameAuth(window.sessionStorage.getItem('logged_username'));
+      setUserIdAuth(window.sessionStorage.getItem('logged_id'));
     } else {
       setIsLogged(false);
     }
@@ -50,6 +52,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/my-favorites' element={<Favorites />} />
           <Route path='/create-event' element={<CreateEvent />} />
+          <Route path='/independent/edit-event/:eventId' element={<EditEvent />} />
         </Routes>
       </LoginContext.Provider>
     </div>
