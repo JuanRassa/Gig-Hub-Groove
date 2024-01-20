@@ -1,15 +1,3 @@
-.MuiCard-root {
-  max-width: unset !important;
-  width: clamp(320px, 20%, 20%);
-}
-
-.css-1oqqzyl-MuiContainer-root {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding-top: 50px;
-}
-
 .trendyPack {
   width: 80%;
   transition: all 0.4s ease-in-out;
@@ -30,8 +18,7 @@
   transition: all 0.4s ease-in-out;
 }
 
-.mainTopics,
-p {
+.mainTopics {
   text-align: center;
   color: #fdf8f2;
   font-family: 'Montserrat', sans-serif;

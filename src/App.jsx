@@ -3,7 +3,6 @@ import { LoginContext } from './context/LoginContext';
 import './App.css';
 import AllConcerts from './pages/trendies/AllConcerts';
 import HomeIndependent from './pages/independent/HomeIndependent';
-import DrawerAppBar from './components/DrawerAppBar';
 import HomePage from './pages/HomePage';
 import { Route, Routes, Link } from 'react-router-dom';
 import EventDetails from './pages/trendies/EventDetails';
@@ -14,7 +13,7 @@ import Favorites from './pages/users/Favorites';
 import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
 import EditEvent from './pages/independent/EditEvent/EditEvent';
 
-import { ChakraProvider, ChakraBaseProvider, extendBaseTheme, theme as chakraTheme } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
 function App() {
   const [isLogged, setIsLogged] = useState(false);

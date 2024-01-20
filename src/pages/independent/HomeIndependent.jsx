@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import EventCard from '../../components/EventCard';
+import ChakraCard from '../../components/ChakraCard';
 import axios from 'axios';
 import SearchBar from '../../components/SearchBar';
 import './styles.css';
@@ -56,20 +56,16 @@ const HomeIndependent = () => {
         to={isLogged ? '/create-event' : '/login'}
         onClick={() => {
           window.sessionStorage.setItem('triedToCreateOrEdit', 'yes');
-        }}
-      >
+        }}>
         Create new events
       </Link>
-      <SearchBar
-        allIndependent={allIndependent}
-        setShowIndependent={setShowIndependent}
-      />
+      <SearchBar allIndependent={allIndependent} setShowIndependent={setShowIndependent} />
       {loading ? (
         <p>Loanding...</p>
       ) : (
         <div className='AllIndependent__container'>
           {showIndependent.map(event => {
-            return <EventCard key={event.id} events={event} />;
+            return <ChakraCard key={event.id} events={event} />;
           })}
         </div>
       )}

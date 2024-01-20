@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { LoginContext } from '../../context/LoginContext';
 import axios from 'axios';
-import EventCard from '../../components/EventCard';
+import ChakraCard from '../../components/ChakraCard';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -103,7 +103,7 @@ const Favorites = () => {
       ) : (
         <div className='AllConcerts_container'>
           {wishlistInfo.map(event => (
-            <EventCard
+            <ChakraCard
               key={event.id}
               events={event}
               isInWishList={isEventInWishList(event.id)}
