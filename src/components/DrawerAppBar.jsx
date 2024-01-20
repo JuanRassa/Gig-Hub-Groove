@@ -14,19 +14,14 @@ function DrawerAppBar() {
   const {
     isLoggedCtx: [isLogged, setIsLogged],
     usernameAuthCtx: [usernameAuth],
+    userIdAuthCtx: [userIdAuth],
   } = useContext(LoginContext);
 
   return (
     <Box sx={{ flexGrow: 10 }}>
       <AppBar position='static'>
         <Toolbar>
-          <IconButton
-            size='large'
-            edge='start'
-            color='inherit'
-            aria-label='menu'
-            sx={{ mr: 2 }}
-          >
+          <IconButton size='large' edge='start' color='inherit' aria-label='menu' sx={{ mr: 2 }}>
             <MenuIcon className='menuIcon' />
             <LeftDrawer />
           </IconButton>
@@ -36,16 +31,20 @@ function DrawerAppBar() {
 
           {!isLogged && <Link to='/login'>Login</Link>}
           {!isLogged && <Link to='/register'>Register</Link>}
-          {isLogged && <Link to='my-favorites'>Hi {usernameAuth}</Link>}
+          {isLogged && (
+            <Link to='my-favorites'>
+              Hi {userIdAuth}-{usernameAuth}
+            </Link>
+          )}
           {isLogged && (
             <Button
               onClick={() => {
                 setIsLogged(false);
                 window.sessionStorage.setItem('is_logged', false);
                 window.sessionStorage.setItem('logged_username', '');
+                window.sessionStorage.setItem('logged_id', '');
               }}
-              color='inherit'
-            >
+              color='inherit'>
               Log out
             </Button>
           )}

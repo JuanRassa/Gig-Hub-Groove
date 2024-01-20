@@ -12,10 +12,13 @@ import Login from './pages/users/Login';
 import Register from './pages/users/Register';
 import Favorites from './pages/users/Favorites';
 import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
+import EditEvent from './pages/independent/EditEvent/EditEvent';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [usernameAuth, setUsernameAuth] = useState('');
+  const [userIdAuth, setUserIdAuth] = useState('');
+  const [triggerIndependentGet, setTriggerIndependentGet] = useState(false);
 
   useEffect(() => {
     const is_logged = window.sessionStorage.getItem('is_logged');
@@ -24,6 +27,7 @@ function App() {
     if (is_logged === 'true') {
       setIsLogged(true);
       setUsernameAuth(window.sessionStorage.getItem('logged_username'));
+      setUserIdAuth(window.sessionStorage.getItem('logged_id'));
     } else {
       setIsLogged(false);
     }
@@ -35,6 +39,8 @@ function App() {
         value={{
           isLoggedCtx: [isLogged, setIsLogged],
           usernameAuthCtx: [usernameAuth, setUsernameAuth],
+          userIdAuthCtx: [userIdAuth, setUserIdAuth],
+          triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
         }}>
         <DrawerAppBar />
         <Routes>
@@ -47,6 +53,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/my-favorites' element={<Favorites />} />
           <Route path='/create-event' element={<CreateEvent />} />
+          <Route path='/independent/edit-event/:eventId' element={<EditEvent />} />
         </Routes>
       </LoginContext.Provider>
     </div>

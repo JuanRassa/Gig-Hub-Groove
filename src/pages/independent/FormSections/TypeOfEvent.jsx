@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CreateFormContext } from '../../../../context/CreateFormContext';
+import { CreateFormContext } from '../../../context/CreateFormContext';
 
 const TypeOfEvent = () => {
   const {
@@ -17,7 +17,7 @@ const TypeOfEvent = () => {
           type='radio'
           name='event_type_concert'
           id='event_concert'
-          defaultChecked
+          checked={event_type_value === 'concert'}
           value='concert'
           onChange={e => {
             event_type_concert_funk(e);
@@ -31,6 +31,7 @@ const TypeOfEvent = () => {
           name='event_type_concert'
           id='event_festival'
           value='festival'
+          checked={event_type_value === 'festival'}
           onChange={e => {
             event_type_festival_funk(e);
           }}

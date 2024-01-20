@@ -10,6 +10,7 @@ const RegisterLogin = () => {
   const {
     isLoggedCtx: [, setIsLogged],
     usernameAuthCtx: [, setUsernameAuth],
+    userIdAuthCtx: [, setUserIdAuth],
   } = useContext(LoginContext);
 
   const API_URL = `https://gig-hub-independent.adaptable.app/users`;
@@ -34,8 +35,10 @@ const RegisterLogin = () => {
         if (userFound && userFound.password === password) {
           setIsLogged(true);
           setUsernameAuth(userFound.username);
+          setUserIdAuth(userFound.id);
           window.sessionStorage.setItem('is_logged', true);
           window.sessionStorage.setItem('logged_username', userFound.username);
+          window.sessionStorage.setItem('logged_id', userFound.id);
           if (window.sessionStorage.getItem('triedToCreateOrEdit') === 'yes') {
             window.sessionStorage.setItem('triedToCreateOrEdit', 'no');
             return navigate('/create-event');

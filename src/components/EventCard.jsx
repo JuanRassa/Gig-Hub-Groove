@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -11,10 +12,17 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+import { LoginContext } from '../context/LoginContext';
+
 function EventCard({ events, isInWishList, removeEventWishList, addEventWishList }) {
+  const {
+    isLoggedCtx: [isLogged],
+    triggerIndependentGetCtx: [, setTriggerIndependentGet],
+  } = useContext(LoginContext);
   // console.log(events);
   console.log(isInWishList);
   const { pathname } = useLocation();
+
   // const isEventInFavorites = isInWishList(events.id);
 
   // const handleToggleWishlist = () => {
@@ -25,9 +33,20 @@ function EventCard({ events, isInWishList, removeEventWishList, addEventWishList
   //   }
   // };
 
+  const deleteEventIdependent = async id => {
+    try {
+      const response = await axios.delete(`https://gig-hub-independent.adaptable.app/events/${id}`);
+      if (response.status === 200) {
+        setTriggerIndependentGet(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
-      <CardMedia component='img' alt='event image' height='140' image={events?.image} />
+      <CardMedia component='img' alt='event image' height='140' image={events.image} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}
@@ -52,6 +71,26 @@ function EventCard({ events, isInWishList, removeEventWishList, addEventWishList
           />
         )} */}
 
+        <FavoriteBorderIcon className='favorite_empty' />
+        <FavoriteIcon className='favorite_filled' />
+        {pathname === '/independent' && (
+          <button
+            style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
+            className={`${!isLogged ? 'disabled' : ''}`}
+            onClick={() => {
+              deleteEventIdependent(events.id);
+            }}>
+            Delete {events.id}
+          </button>
+        )}
+        {pathname === '/independent' && (
+          <Link
+            to={`/independent/edit-event/${events.id}`}
+            style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
+            className={`${!isLogged ? 'disabled' : ''}`}>
+            Edit {events.id}
+          </Link>
+        )}
         {pathname === '/allconcerts' && (
           <Link to={`/allconcerts/${events.identifier}`} size='small'>
             Learn More

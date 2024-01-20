@@ -14,6 +14,7 @@ const HomeIndependent = () => {
 
   const {
     isLoggedCtx: [isLogged],
+    triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
   } = useContext(LoginContext);
 
   const [showIndependent, setShowIndependent] = useState([]);
@@ -40,6 +41,13 @@ const HomeIndependent = () => {
   useEffect(() => {
     getAllIndependent();
   }, []);
+  useEffect(() => {
+    if (triggerIndependentGet) {
+      setShowIndependent([]);
+      setTriggerIndependentGet(false);
+      getAllIndependent();
+    }
+  }, [triggerIndependentGet]);
 
   return (
     <div className='HomeIndependent'>

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { CreateFormContext } from '../../../../context/CreateFormContext';
-import { countriesList } from '../../../../components/helpers/countriesList';
+import { CreateFormContext } from '../../../context/CreateFormContext';
+import { countriesList } from '../../../components/helpers/countriesList';
 
 const LocationInformation = () => {
   const {

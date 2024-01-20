@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CreateFormContext } from '../../../context/CreateFormContext';
@@ -8,8 +9,9 @@ import LocationInformation from './../FormSections/LocationInformation';
 import TypeOfEvent from './../FormSections/TypeOfEvent';
 import LineUpInformation from './../FormSections/LineUpInformation';
 
-const CreateEvent = () => {
+const EditEvent = () => {
   const API_URL = `https://gig-hub-independent.adaptable.app/events`;
+  const { eventId } = useParams();
   const navigate = useNavigate();
   /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
   /* *** *** *** *** *** *** States *** *** *** *** *** *** *** ***  */
@@ -90,12 +92,12 @@ const CreateEvent = () => {
   };
 
   // Submit:
-  const handleSubmit = e => {
+  const submitEdition = e => {
     e.preventDefault();
-    createNewEvent_POST();
+    editEvent_PUT();
   };
   /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
-  const createNewEvent_body = {
+  const editEvent_body = {
     type: event_type_value || null,
     name: event_name || null,
     geoCountryIso2: event_event_geoCountryIso2 || null,
@@ -112,11 +114,12 @@ const CreateEvent = () => {
     image: event_image_url || null,
     description: event_event_description || null,
   };
-  const createNewEvent_POST = async () => {
+  const editEvent_PUT = async () => {
     try {
-      const response = await axios.post(API_URL, createNewEvent_body);
-      if (response.status === 201) {
-        alert('Event Created succesfuly');
+      const response = await axios.put(`${API_URL}/${eventId}`, editEvent_body);
+      console.log(response);
+      if (response.status === 200) {
+        alert('Event edited succesfuly');
         return navigate('/independent');
       }
     } catch (error) {
@@ -124,11 +127,34 @@ const CreateEvent = () => {
     }
   };
 
-  console.log('Log do Juan: ', createNewEvent_body);
+  useEffect(() => {
+    axios
+      .get(`https://gig-hub-independent.adaptable.app/events/?id=${eventId}`)
+      .then(response => {
+        const eventFromApi = response.data[0];
+
+        set_Event_name(eventFromApi.name);
+        set_Event_start_date(eventFromApi['start-date']);
+        set_Event_end_date(eventFromApi['end-date']);
+        set_Event_image_url(eventFromApi.image);
+        set_Event_event_description(eventFromApi.description);
+        set_Event_geoCountryIso2(eventFromApi.geoCountryIso2);
+        set_Event_geoCityName(eventFromApi.geoCityName);
+        set_Event_venueName(eventFromApi.location.name);
+        set_Event_venueType(eventFromApi.location.type);
+        set_Event_venueCapacity(eventFromApi.location.capacity);
+        set_Event_venuePostalCode(eventFromApi.location.postalAdress);
+        eventFromApi.type.toLowerCase() === 'festival' ? set_Event_type_value('festival') : set_Event_type_value('concert');
+        set_Event_performer_array(eventFromApi.performer);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [eventId]);
 
   return (
-    <div className='CreateEvent'>
-      <h2>Create a new event</h2>
+    <div className='EditEvent'>
+      <h2>Edit Event</h2>
       <CreateFormContext.Provider
         value={{
           states: {
@@ -170,16 +196,16 @@ const CreateEvent = () => {
             handleChange_ctx: handleChange,
           },
         }}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={submitEdition}>
           <GeneralInfo />
           <LocationInformation />
           <TypeOfEvent />
           <LineUpInformation />
-          <button type='submit'>Create</button>
+          <button type='submit'>Edit</button>
         </form>
       </CreateFormContext.Provider>
     </div>
   );
 };
 
-export default CreateEvent;
+export default EditEvent;
