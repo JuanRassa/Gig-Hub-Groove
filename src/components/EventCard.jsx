@@ -11,12 +11,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-function EventCard({
-  events,
-  isInWishList,
-  removeEventWishList,
-  addEventWishList,
-}) {
+function EventCard({ events, isInWishList, removeEventWishList, addEventWishList }) {
   // console.log(events);
   console.log(isInWishList);
   const { pathname } = useLocation();
@@ -32,20 +27,13 @@ function EventCard({
 
   return (
     <Card sx={{ maxWidth: 345 }} className='eventCard'>
-      <CardMedia
-        component='img'
-        alt='event image'
-        height='140'
-        image={events.image}
-      />
+      <CardMedia component='img' alt='event image' height='140' image={events?.image} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
           {events.name}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {pathname === '/allconcerts'
-            ? events.startDate
-            : events['start-date']}
+          {pathname === '/allconcerts' ? events.startDate : events['start-date']}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
           {events.location.name}
