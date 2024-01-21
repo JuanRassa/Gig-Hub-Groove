@@ -3,7 +3,17 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import ChakraCard from '../../components/ChakraCard';
 import Filters from '../../components/Filters';
-import './styles.css';
+import { Box, Flex } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -63,21 +73,90 @@ function AllConcerts() {
   }, []);
 
   return (
-    <div>
-      <h1 className='mainTitle'>Trendy Concerts</h1>
+    <Box bg='#292A2A'>
+      <Text
+        fontSize='28px'
+        fontWeight='600'
+        align='center'
+        color='#FDF8F2'
+        paddingBottom='20px'
+        paddingTop='20px'
+      >
+        Trendy Concerts
+      </Text>
 
-      <Filters showEvents={showEvents} setShowEvents={setShowEvents} filters={filters} setFilters={setFilters} getEvents={getEvents} />
-      <div className='AllConcerts_container'>
-        {loading && <p>Loading...</p>}
-        {!loading && showEvents.map(event => <ChakraCard key={event.identifier} events={event} />)}
-      </div>
+      <Accordion allowToggle margin='10px 30px 10px 30px'>
+        <AccordionItem>
+          <AccordionButton>
+            <Box as='span' flex='1' textAlign='left'>
+              <Text fontSize='18px' fontWeight='600' color='#FDF8F2'>
+                Filters
+              </Text>
+            </Box>
+            <AccordionIcon color='#FDF8F2' />
+          </AccordionButton>
+          <AccordionPanel pb={4}>
+            <Filters
+              showEvents={showEvents}
+              setShowEvents={setShowEvents}
+              filters={filters}
+              setFilters={setFilters}
+              getEvents={getEvents}
+            />
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
 
-      <div>
-        <button onClick={handlePrevClick}>Return</button>
-        {currentPage}
-        <button onClick={handleNextClick}>Next</button>
-      </div>
-    </div>
+      <Flex
+        flexWrap='wrap'
+        justifyContent='space-evenly'
+        gap='16px'
+        paddingTop='30px'
+      >
+        {loading && <Spinner size='xl' color='#FDF8F2' />}
+        {!loading &&
+          showEvents.map(event => (
+            <ChakraCard key={event.identifier} events={event} />
+          ))}
+      </Flex>
+
+      <Flex
+        flexDirection='row'
+        justifyContent='center'
+        gap='15px'
+        alignItems='center'
+        paddingTop='50px'
+        paddingBottom='50px'
+      >
+        {currentPage > 1 && (
+          <Button
+            bgColor='#A6348E'
+            variant='outline'
+            _hover={{
+              bgColor: '#292A2A',
+            }}
+            color='#FDF8F2'
+            onClick={handlePrevClick}
+          >
+            Return
+          </Button>
+        )}
+        <Text color='#FDF8F2' fontSize='18px' fontWeight='600'>
+          Page {currentPage}
+        </Text>
+        <Button
+          bgColor='#A6348E'
+          variant='outline'
+          _hover={{
+            bgColor: '#292A2A',
+          }}
+          onClick={handleNextClick}
+          color='#FDF8F2'
+        >
+          Next
+        </Button>
+      </Flex>
+    </Box>
   );
 }
 
