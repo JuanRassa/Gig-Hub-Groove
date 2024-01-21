@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import ChakraCard from '../../components/ChakraCard';
 import Filters from '../../components/Filters';
-import './styles.css';
+import { Box, Flex } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
+import { Stack, Button } from '@chakra-ui/react';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -63,21 +65,72 @@ function AllConcerts() {
   }, []);
 
   return (
-    <div>
-      <h1 className='mainTitle'>Trendy Concerts</h1>
+    <Box bg='#292A2A'>
+      <Text
+        fontSize='28px'
+        fontWeight='600'
+        align='center'
+        color='#FDF8F2'
+        paddingBottom='20px'
+        paddingTop='20px'
+      >
+        Trendy Concerts
+      </Text>
 
-      <Filters showEvents={showEvents} setShowEvents={setShowEvents} filters={filters} setFilters={setFilters} getEvents={getEvents} />
-      <div className='AllConcerts_container'>
+      <Filters
+        showEvents={showEvents}
+        setShowEvents={setShowEvents}
+        filters={filters}
+        setFilters={setFilters}
+        getEvents={getEvents}
+      />
+
+      <Flex
+        flexWrap='wrap'
+        justifyContent='space-evenly'
+        gap='16px'
+        paddingTop='30px'
+      >
         {loading && <p>Loading...</p>}
-        {!loading && showEvents.map(event => <ChakraCard key={event.identifier} events={event} />)}
-      </div>
+        {!loading &&
+          showEvents.map(event => (
+            <ChakraCard key={event.identifier} events={event} />
+          ))}
+      </Flex>
 
-      <div>
-        <button onClick={handlePrevClick}>Return</button>
-        {currentPage}
-        <button onClick={handleNextClick}>Next</button>
-      </div>
-    </div>
+      <Flex
+        flexDirection='row'
+        justifyContent='center'
+        gap='15px'
+        alignItems='center'
+        paddingTop='50px'
+        paddingBottom='50px'
+      >
+        <Button
+          bgColor='#A6348E'
+          _hover={{
+            bgColor: '#292A2A',
+          }}
+          color='#FDF8F2'
+          onClick={handlePrevClick}
+        >
+          Return
+        </Button>
+        <Text color='#FDF8F2' fontSize='18px' fontWeight='600'>
+          {currentPage}
+        </Text>
+        <Button
+          bgColor='#A6348E'
+          _hover={{
+            bgColor: '#292A2A',
+          }}
+          onClick={handleNextClick}
+          color='#FDF8F2'
+        >
+          Next
+        </Button>
+      </Flex>
+    </Box>
   );
 }
 

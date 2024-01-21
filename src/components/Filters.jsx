@@ -68,7 +68,12 @@ function Filters({
   return (
     <div className='filters-container'>
       <Box>
-        <Text fontSize='18px' fontWeight='600' marginLeft='30px'>
+        <Text
+          fontSize='18px'
+          fontWeight='600'
+          marginLeft='30px'
+          color='#FDF8F2'
+        >
           Filters
         </Text>
         <Flex
@@ -80,12 +85,12 @@ function Filters({
           border='1px'
           borderColor='gray.200'
           padding='20px'
-          margin='30px'
+          margin='10px 30px 30px 30px'
           bgColor='rgba(41,42,42,0.1)'
           borderRadius='5px'
         >
           <Box h='80px'>
-            <Text fontSize='14px' fontWeight='600'>
+            <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Country:
             </Text>
             <Select
@@ -95,6 +100,7 @@ function Filters({
               onChange={handleInputChange}
               border='1px'
               borderColor='#FDF8F2'
+              color='#FDF8F2'
             >
               <option value=''>All Countries</option>
               <option value='AD'>Andorra</option>
@@ -149,7 +155,7 @@ function Filters({
           </Box>
 
           <Box h='80px'>
-            <Text fontSize='14px' fontWeight='600'>
+            <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Artist Name:
             </Text>
             <Input
@@ -164,7 +170,7 @@ function Filters({
           </Box>
 
           <Box h='80px'>
-            <Text fontSize='14px' fontWeight='600'>
+            <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Date Range:
             </Text>
             <DatePicker
@@ -187,7 +193,7 @@ function Filters({
           </Box>
 
           <Box h='80px'>
-            <Text fontSize='14px' fontWeight='600'>
+            <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Type of event:
             </Text>
             <RadioGroup>
@@ -196,22 +202,28 @@ function Filters({
                   value='festival'
                   checked={filters.eventType === 'festival'}
                   onChange={handleRadioChange}
+                  border='2px'
+                  borderColor='#FDF8F2'
+                  color='#FDF8F2'
                 >
-                  Festival
+                  <Text color='#FDF8F2'>Festival</Text>
                 </Radio>
                 <Radio
                   value='concert'
                   checked={filters.eventType === 'concert'}
                   onChange={handleRadioChange}
+                  border='2px'
+                  borderColor='#FDF8F2'
+                  color='#FDF8F2'
                 >
-                  Concert
+                  <Text color='#FDF8F2'>Concert</Text>
                 </Radio>
               </Stack>
             </RadioGroup>
           </Box>
 
           <Box h='80px'>
-            <Text fontSize='14px' fontWeight='600'>
+            <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Genre:
             </Text>
             <Select
@@ -221,6 +233,7 @@ function Filters({
               onChange={handleInputChange}
               border='1px'
               borderColor='#FDF8F2'
+              color='#FDF8F2'
             >
               <option value=''>All Genres</option>
               <option value='bluegrass'>Bluegrass</option>
