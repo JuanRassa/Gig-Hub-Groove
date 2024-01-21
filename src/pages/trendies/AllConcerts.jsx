@@ -6,6 +6,7 @@ import Filters from '../../components/Filters';
 import { Box, Flex } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 import { Stack, Button } from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -91,7 +92,7 @@ function AllConcerts() {
         gap='16px'
         paddingTop='30px'
       >
-        {loading && <p>Loading...</p>}
+        {loading && <Spinner size='xl' color='#FDF8F2' />}
         {!loading &&
           showEvents.map(event => (
             <ChakraCard key={event.identifier} events={event} />
