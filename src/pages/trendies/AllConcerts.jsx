@@ -5,8 +5,15 @@ import ChakraCard from '../../components/ChakraCard';
 import Filters from '../../components/Filters';
 import { Box, Flex } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
-import { Stack, Button } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -78,13 +85,27 @@ function AllConcerts() {
         Trendy Concerts
       </Text>
 
-      <Filters
-        showEvents={showEvents}
-        setShowEvents={setShowEvents}
-        filters={filters}
-        setFilters={setFilters}
-        getEvents={getEvents}
-      />
+      <Accordion allowToggle margin='10px 30px 10px 30px'>
+        <AccordionItem>
+          <AccordionButton>
+            <Box as='span' flex='1' textAlign='left'>
+              <Text fontSize='18px' fontWeight='600' color='#FDF8F2'>
+                Filters
+              </Text>
+            </Box>
+            <AccordionIcon color='#FDF8F2' />
+          </AccordionButton>
+          <AccordionPanel pb={4}>
+            <Filters
+              showEvents={showEvents}
+              setShowEvents={setShowEvents}
+              filters={filters}
+              setFilters={setFilters}
+              getEvents={getEvents}
+            />
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
 
       <Flex
         flexWrap='wrap'
@@ -107,21 +128,25 @@ function AllConcerts() {
         paddingTop='50px'
         paddingBottom='50px'
       >
-        <Button
-          bgColor='#A6348E'
-          _hover={{
-            bgColor: '#292A2A',
-          }}
-          color='#FDF8F2'
-          onClick={handlePrevClick}
-        >
-          Return
-        </Button>
+        {currentPage > 1 && (
+          <Button
+            bgColor='#A6348E'
+            variant='outline'
+            _hover={{
+              bgColor: '#292A2A',
+            }}
+            color='#FDF8F2'
+            onClick={handlePrevClick}
+          >
+            Return
+          </Button>
+        )}
         <Text color='#FDF8F2' fontSize='18px' fontWeight='600'>
-          {currentPage}
+          Page {currentPage}
         </Text>
         <Button
           bgColor='#A6348E'
+          variant='outline'
           _hover={{
             bgColor: '#292A2A',
           }}

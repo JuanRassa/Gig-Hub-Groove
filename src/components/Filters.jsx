@@ -68,14 +68,6 @@ function Filters({
   return (
     <div className='filters-container'>
       <Box>
-        <Text
-          fontSize='18px'
-          fontWeight='600'
-          marginLeft='30px'
-          color='#FDF8F2'
-        >
-          Filters
-        </Text>
         <Flex
           flexWrap='wrap'
           flexDirection='row'
@@ -260,6 +252,7 @@ function Filters({
           <Box>
             <Button
               bgColor='#A6348E'
+              variant='outline'
               _hover={{
                 bgColor: '#292A2A',
               }}
