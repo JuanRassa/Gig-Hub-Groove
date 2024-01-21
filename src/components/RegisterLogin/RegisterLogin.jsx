@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../context/LoginContext';
 
+import { InputGroup, Input, InputRightElement, Button } from '@chakra-ui/react';
+
 import './styles.css';
 
 const RegisterLogin = () => {
@@ -18,6 +20,8 @@ const RegisterLogin = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
 
   const handleUsernameInput = e => {
     setUsername(e.target.value);
@@ -75,32 +79,33 @@ const RegisterLogin = () => {
           loginRegisterFunk();
         }}>
         <div className='InputWrapper'>
-          <label htmlFor='username'>Username</label>
-          <input
+          <Input
+            value={username}
             onChange={e => {
               handleUsernameInput(e);
             }}
-            value={username}
-            className='UsernameInput'
-            type='text'
-            name='username'
-            id='username'
+            variant='filled'
             placeholder='Username'
           />
         </div>
         <div className='InputWrapper'>
-          <label htmlFor='password'>Password</label>
-          <input
-            onChange={e => {
-              handlePasswordInput(e);
-            }}
-            value={password}
-            className='PasswordInput'
-            type='password'
-            name='password'
-            id='password'
-            placeholder='Password'
-          />
+          <InputGroup size='md'>
+            <Input
+              value={password}
+              onChange={e => {
+                handlePasswordInput(e);
+              }}
+              variant='filled'
+              pr='4.5rem'
+              type={show ? 'text' : 'password'}
+              placeholder='Enter password'
+            />
+            <InputRightElement width='4.5rem'>
+              <Button h='1.75rem' size='sm' onClick={handleClick}>
+                {show ? 'Hide' : 'Show'}
+              </Button>
+            </InputRightElement>
+          </InputGroup>
         </div>
         <button type='submit'>Submit</button>
       </form>
