@@ -107,7 +107,9 @@ const RegisterLogin = () => {
             </InputRightElement>
           </InputGroup>
         </div>
-        <button type='submit'>Submit</button>
+        <button className='Submit_LoginRegister' type='submit'>
+          Submit
+        </button>
       </form>
     </div>
   );

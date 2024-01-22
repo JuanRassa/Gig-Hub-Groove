@@ -32,7 +32,7 @@
 }
 .Navbar_btn:hover::after {
   width: 100%;
-  border: 1px solid #fdf8f2;
+  border: 1px solid #f76320;
   transition: width 0.3s ease-in-out;
 }
 
@@ -54,12 +54,13 @@
   padding-top: 0;
   padding-bottom: 0;
   height: 48px;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
-.Navbar_loginRegister_login:hover {
-  color: #292a2a;
-  background-color: #fff;
-  transition: all 0.6s ease-in-out 0.2s;
+.Navbar_loginRegister_login:hover,
+.Navbar_loginRegister_register:hover {
+  background-color: #f76320;
+  transition: all 0.4s ease-in-out 0.2s;
+  border-radius: 5px;
 }
 .Navbar_loginRegister_login.Navbar_btn::after,
 .Navbar_loginRegister_register.Navbar_btn::after {
@@ -67,7 +68,7 @@
 }
 .Navbar_loginRegister_login.Navbar_btn:hover::after,
 .Navbar_loginRegister_register.Navbar_btn:hover::after {
-  height: 46px;
+  border-color: transparent;
   transition: all 0.4s ease-in;
 }
 .Navbar_loginRegister_register {
