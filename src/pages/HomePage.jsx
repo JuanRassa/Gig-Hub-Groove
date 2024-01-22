@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import BackGroundEffect from '../components/BackGroundEffect';
+import '../styles.scss';
 import '../index.css';
 
 function HomePage() {
@@ -23,9 +23,7 @@ function HomePage() {
     <div className='backgroundColor'>
       <h1 className='headerHome'>Music is for everyone one if for music</h1>
       <div className={`waveContainer ${waveColor ? 'waveColored' : ''}`}>
-        <div className='homepage'>
-          <BackGroundEffect />
-        </div>
+        <div className='homepage'></div>
         <svg viewBox='0 0 1320 500'>
           <path
             fillOpacity={0.5}
