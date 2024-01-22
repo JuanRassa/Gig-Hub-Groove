@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import ChakraCard from '../../components/ChakraCard';
 import Filters from '../../components/Filters';
 import { Box, Flex } from '@chakra-ui/react';
-import { Text } from '@chakra-ui/react';
+import { Text, Heading } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 import {

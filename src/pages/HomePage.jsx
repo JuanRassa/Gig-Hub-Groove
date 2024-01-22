@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+// import '../styles.scss';
+import { Heading, Text } from '@chakra-ui/react';
 import '../index.css';
 
 function HomePage() {
@@ -20,8 +22,17 @@ function HomePage() {
 
   return (
     <div className='backgroundColor'>
-      <h1 className='headerHome'>Music is for everyone one if for music</h1>
+      <Heading
+        color='#FDF8F2'
+        textAlign='center'
+        paddingTop='100px'
+        fontFamily='Josefin Sans'
+        size='2xl'
+      >
+        Music is for everyone is for music
+      </Heading>
       <div className={`waveContainer ${waveColor ? 'waveColored' : ''}`}>
+        <div className='homepage'></div>
         <svg viewBox='0 0 1320 500'>
           <path
             fillOpacity={0.5}
@@ -83,9 +94,18 @@ function HomePage() {
               onMouseEnter={handleLinkHover}
               onMouseLeave={handleLinkLeave}
             >
-              <h3 className='mainTopics'>Trendy Concerts</h3>
+              <Heading
+                size='lg'
+                color='#FDF8F2'
+                textAlign='center'
+                fontFamily='Josefin Sans'
+              >
+                Trendy Concerts
+              </Heading>
+              <Text fontSize='lg' fontFamily='Josefin Sans'>
+                Check out the most trendy concerts neer you!
+              </Text>
             </Link>
-            <p>Check out the most trendy concerts neer you!</p>
           </div>
 
           <div className='independentPack'>
@@ -94,9 +114,18 @@ function HomePage() {
               onMouseEnter={handleLinkHover}
               onMouseLeave={handleLinkLeave}
             >
-              <h3 className='mainTopics'>Independent</h3>
+              <Heading
+                size='lg'
+                color='#FDF8F2'
+                textAlign='center'
+                fontFamily='Josefin Sans'
+              >
+                Independent
+              </Heading>
+              <Text fontSize='lg' fontFamily='Josefin Sans'>
+                Want to know some new artist?! Check out our independent list
+              </Text>
             </Link>
-            <p>Want to know some new artist?! Check out our independent list</p>
           </div>
         </div>
       </div>

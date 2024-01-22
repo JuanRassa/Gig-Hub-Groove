@@ -11,17 +11,12 @@
 .independentPack {
   width: 80%;
   transition: all 0.4s ease-in-out;
+  padding-bottom: 20px;
 }
 
 .independentPack:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: all 0.4s ease-in-out;
-}
-
-.mainTopics {
-  text-align: center;
-  color: #fdf8f2;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .backgroundColor {
@@ -58,12 +53,6 @@
   color: #fdf8f2;
   cursor: pointer;
   gap: 100px;
-}
-
-.headerHome {
-  text-align: center;
-  color: #fdf8f2;
-  padding-top: 30px;
 }
 
 .waveContainer.waveColored svg path {
@@ -107,22 +96,32 @@ svg path:nth-child(4) {
 
 @keyframes pathAnim {
   0% {
-    d: path('M0,192 C220,100,440,100,660,192 C880,290,1100,290,1320,192 L1320 500 L0 500');
+    d: path(
+      'M0,192 C220,100,440,100,660,192 C880,290,1100,290,1320,192 L1320 500 L0 500'
+    );
   }
 
   25% {
-    d: path('M0,100 C220,100,440,292,660,292 C880,292,1100,100,1320,100 L1320 500 L0 500');
+    d: path(
+      'M0,100 C220,100,440,292,660,292 C880,292,1100,100,1320,100 L1320 500 L0 500'
+    );
   }
 
   50% {
-    d: path('M0,192 C220,290,440,290,660,192 C880,100,1100,100,1320,192 L1320 500 L0 500');
+    d: path(
+      'M0,192 C220,290,440,290,660,192 C880,100,1100,100,1320,192 L1320 500 L0 500'
+    );
   }
 
   75% {
-    d: path('M0,292 C220,292,440,100,660,100 C880,100,1100,292,1320,292 L1320 500 L0 500');
+    d: path(
+      'M0,292 C220,292,440,100,660,100 C880,100,1100,292,1320,292 L1320 500 L0 500'
+    );
   }
 
   100% {
-    d: path('M0,192 C220,100,440,100,660,192 C880,290,1100,290,1320,192 L1320 500 L0 500');
+    d: path(
+      'M0,192 C220,100,440,100,660,192 C880,290,1100,290,1320,192 L1320 500 L0 500'
+    );
   }
 }
