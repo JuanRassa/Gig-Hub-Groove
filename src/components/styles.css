@@ -1,1 +1,36 @@
+/* BackgroundEffect.css */
+.background-effect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+.head,
+.tail {
+  position: fixed;
+  width: 3em;
+  height: 3em;
+  content: '.';
+  mix-blend-mode: screen;
+  animation: move infinite ease-in-out alternate;
+}
+
+.head {
+  animation-duration: 44s;
+  animation-delay: -27s;
+}
+
+.tail {
+  animation-duration: 43s;
+  animation-delay: -32s;
+}
+
+@keyframes move {
+  from {
+    transform: rotate(0deg) scale(12) translateX(-20px);
+  }
+  to {
+    transform: rotate(360deg) scale(18) translateX(20px);
+  }
+}
