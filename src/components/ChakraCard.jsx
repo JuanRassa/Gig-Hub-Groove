@@ -4,9 +4,27 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../context/LoginContext';
 
-import { Card, CardHeader, CardBody, CardFooter, Stack, Heading, Divider, ButtonGroup, Button } from '@chakra-ui/react';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Stack,
+  Heading,
+  Divider,
+  ButtonGroup,
+  Button,
+  Text,
+} from '@chakra-ui/react';
 
-const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishList }) => {
+import './styles.css';
+
+const ChakraCard = ({
+  events,
+  isInWishList,
+  removeEventWishList,
+  addEventWishList,
+}) => {
   const {
     isLoggedCtx: [isLogged],
     triggerIndependentGetCtx: [, setTriggerIndependentGet],
@@ -27,7 +45,9 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
 
   const deleteEventIdependent = async id => {
     try {
-      const response = await axios.delete(`https://gig-hub-independent.adaptable.app/events/${id}`);
+      const response = await axios.delete(
+        `https://gig-hub-independent.adaptable.app/events/${id}`
+      );
       if (response.status === 200) {
         setTriggerIndependentGet(true);
       }
@@ -37,14 +57,14 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
   };
 
   return (
-    <Card maxW='sm'>
+    <Card maxW='sm' bgColor='#FDF8F2' className='cardDisplay'>
       <CardBody>
         <img src={events.image} alt='{events.name}' />
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{events.name}</Heading>
         </Stack>
-        <p>{events.location.name}</p>
-        <p>{events['start-date']}</p>
+        <Text paddingTop='10px'>{events.location.name}</Text>
+        <Text>{events.endDate}</Text>
       </CardBody>
       <Divider />
       <CardFooter>
@@ -55,7 +75,8 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
               className={`${!isLogged ? 'disabled' : ''}`}
               onClick={() => {
                 deleteEventIdependent(events.id);
-              }}>
+              }}
+            >
               Delete {events.id}
             </button>
           )}
@@ -63,7 +84,8 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
             <Link
               to={`/independent/edit-event/${events.id}`}
               style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
-              className={`${!isLogged ? 'disabled' : ''}`}>
+              className={`${!isLogged ? 'disabled' : ''}`}
+            >
               Edit {events.id}
             </Link>
           )}
