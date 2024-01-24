@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LoginContext } from '../../context/LoginContext';
+import cymaticTrendy1 from './../../assets/cymatycSpin.png';
+import cymaticTrendy3 from './../../assets/cymaticSpin3.png';
 import cymaticTrendy5 from './../../assets/cymaticSpin5.png';
 import './Navbar.css';
 

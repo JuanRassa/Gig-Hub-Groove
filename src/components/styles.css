@@ -3,3 +3,12 @@
   color: #fdf8f2;
   transition: all 0.4s ease-in-out;
 }
+.cardDisplayIndependent:hover {
+  background-color: #afd74b;
+  color: #fdf8f2;
+  transition: all 0.4s ease-in-out;
+}
+.cardDisplay img {
+  width: 394px;
+  height: 193px;
+}

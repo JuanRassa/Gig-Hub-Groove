@@ -4,27 +4,11 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../context/LoginContext';
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Stack,
-  Heading,
-  Divider,
-  ButtonGroup,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import { Card, CardHeader, CardBody, CardFooter, Stack, Heading, Divider, ButtonGroup, Button, Text } from '@chakra-ui/react';
 
 import './styles.css';
 
-const ChakraCard = ({
-  events,
-  isInWishList,
-  removeEventWishList,
-  addEventWishList,
-}) => {
+const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishList }) => {
   const {
     isLoggedCtx: [isLogged],
     triggerIndependentGetCtx: [, setTriggerIndependentGet],
@@ -45,9 +29,7 @@ const ChakraCard = ({
 
   const deleteEventIdependent = async id => {
     try {
-      const response = await axios.delete(
-        `https://gig-hub-independent.adaptable.app/events/${id}`
-      );
+      const response = await axios.delete(`https://gig-hub-independent.adaptable.app/events/${id}`);
       if (response.status === 200) {
         setTriggerIndependentGet(true);
       }
@@ -57,7 +39,7 @@ const ChakraCard = ({
   };
 
   return (
-    <Card maxW='sm' bgColor='#FDF8F2' className='cardDisplay'>
+    <Card maxW='sm' bgColor='#FDF8F2' className={`cardDisplay ${pathname === '/independent' ? 'cardDisplayIndependent' : ''}`}>
       <CardBody>
         <img src={events.image} alt='{events.name}' />
         <Stack mt='6' spacing='3'>
@@ -75,8 +57,7 @@ const ChakraCard = ({
               className={`${!isLogged ? 'disabled' : ''}`}
               onClick={() => {
                 deleteEventIdependent(events.id);
-              }}
-            >
+              }}>
               Delete {events.id}
             </button>
           )}
@@ -84,8 +65,7 @@ const ChakraCard = ({
             <Link
               to={`/independent/edit-event/${events.id}`}
               style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
-              className={`${!isLogged ? 'disabled' : ''}`}
-            >
+              className={`${!isLogged ? 'disabled' : ''}`}>
               Edit {events.id}
             </Link>
           )}
