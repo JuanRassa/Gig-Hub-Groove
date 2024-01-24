@@ -14,9 +14,9 @@ const Navbar = () => {
   } = useContext(LoginContext);
   return (
     <nav className='Navbar'>
-      <div className='Navbar_section Navbar_logoHome'>
+      <div className='Navbar_logoHome'>
         <Link className='Navbar_homeLogo_link Navbar_btn' to='/'>
-          {pathname === '/' ? <img src={cymaticTrendy5} alt='cymatics' /> : <></>}
+          <img src={cymaticTrendy5} alt='cymatics' />
           Ágora
         </Link>
       </div>

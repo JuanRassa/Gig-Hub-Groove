@@ -32,18 +32,20 @@
   transition: width 0.3s ease-in-out, height 0.3s ease-in;
 }
 .Navbar_btn:hover::after {
-  width: 100%;
+  /* width: 100%;
   border: 1px solid #f76320;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out; */
 }
 
 .Navbar_logoHome {
   font-size: 1.5rem;
-  transition: width 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  font-weight: 500;
 }
 .Navbar_logoHome:hover {
+  color: #afd74b;
   color: #f76320;
-  transition: width 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .Navbar_homeLogo_link {
   position: relative;
@@ -51,6 +53,7 @@
   justify-content: center;
   align-items: center;
   z-index: 20;
+  font-size: 44px;
 }
 .Navbar_loginRegister {
   display: flex;
@@ -119,10 +122,22 @@
 }
 
 .Navbar_homeLogo_link img {
-  /* position: absolute; */
+  position: absolute;
+  top: 26px;
+  left: 60px;
   width: 40px;
   z-index: -10;
   animation: spinClockWise 8s linear infinite;
+  transition: all 0.6s ease-in-out;
+  transform: translate(0px, 0px);
+}
+.Navbar_homeLogo_link:hover img {
+  position: absolute;
+  width: 40px;
+  z-index: -10;
+  animation: spinClockWise 8s linear infinite;
+  transform: translate(10px, 10px);
+  transition: all 0.6s ease-in-out;
 }
 
 @keyframes spinClockWise {
