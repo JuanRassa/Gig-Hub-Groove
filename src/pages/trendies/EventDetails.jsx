@@ -134,16 +134,25 @@ function EventDetails() {
               </Text>
             )}
 
-            <Text fontWeight='600' color='#FDF8F2' mt='4'>
-              Performers:
-            </Text>
-            <Text color='#FDF8F2'>
-              {event.performer &&
-                Array.isArray(event.performer) &&
-                event.performer
-                  .map(performer => performer.name)
-                  .join(', ')}{' '}
-            </Text>
+            <Box>
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                Performers:
+              </Text>
+              <Flex flexWrap='wrap'>
+                {event.performer &&
+                  Array.isArray(event.performer) &&
+                  event.performer.map((performer, index) => (
+                    <Box
+                      key={index}
+                      width={['50%', '50%']}
+                      mb='2'
+                      flexShrink={0}
+                    >
+                      <Text color='#FDF8F2'>{performer.name}</Text>
+                    </Box>
+                  ))}
+              </Flex>
+            </Box>
           </Box>
 
           <Button

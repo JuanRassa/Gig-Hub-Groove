@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { Input, Stack, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
 function SearchBar({ allIndependent, setShowIndependent }) {
   const [search, setSearch] = useState('');
@@ -26,16 +27,19 @@ function SearchBar({ allIndependent, setShowIndependent }) {
   };
 
   return (
-    <div>
-      <p>Search</p>
-      <input
-        type='text'
-        placeholder='search..'
-        value={search}
-        onChange={handleSearch}
-      ></input>
-      {/* <button onClick={handleSearch}>Search</button> */}
-    </div>
+    <Stack spacing='4'>
+      <InputGroup>
+        <Input
+          margin='10px 150px 30px 150px'
+          type='text'
+          placeholder='search..'
+          value={search}
+          onChange={handleSearch}
+          color='#FDF8F2'
+        ></Input>
+        {/* <button onClick={handleSearch}>Search</button> */}
+      </InputGroup>
+    </Stack>
   );
 }
 
