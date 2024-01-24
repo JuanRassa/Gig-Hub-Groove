@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { CreateFormContext } from '../../../context/CreateFormContext';
 import { countriesList } from '../../../components/helpers/countriesList';
+import { Box, Flex, Text } from '@chakra-ui/layout';
+import { Select, Input } from '@chakra-ui/react';
 
 const LocationInformation = () => {
   const {
@@ -24,98 +26,142 @@ const LocationInformation = () => {
     },
   } = useContext(CreateFormContext);
   return (
-    <fieldset className='CreateEvent_location'>
-      <legend>Location Information</legend>
-      <div className='CreateEvent_inputContainer'>
-        <label htmlFor='event_geoCountryIso2'>
-          Country:
-          <select
-            name='event_geoCountryIso2'
-            id='event_geoCountryIso2'
-            value={event_event_geoCountryIso2}
-            onChange={e => {
-              event_event_geoCountryIso2_funk(e);
-            }}>
-            {countriesList.length > 0 &&
-              countriesList.map(country => (
-                <option key={country.geoCountryIso2} value={country.geoCountryIso2}>
-                  {country.countryName}
-                </option>
-              ))}
-          </select>
-        </label>
-      </div>
-      <div className='CreateEvent_inputContainer'>
-        <label htmlFor='event_geoCityName'>
-          City:
-          <input
-            type='text'
-            name='event_geoCityName'
-            id='event_geoCityName'
-            value={event_event_geoCityName}
-            onChange={e => {
-              event_event_geoCityName_funk(e);
-            }}
-          />
-        </label>
-      </div>
-      <div className='CreateEvent_inputContainer'>
-        <label htmlFor='event_venueName'>
-          Venue's Name:
-          <input
-            type='text'
-            name='event_venueName'
-            id='event_venueName'
-            value={event_event_venueName}
-            onChange={e => {
-              event_event_venueName_funk(e);
-            }}
-          />
-        </label>
-      </div>
-      <div className='CreateEvent_inputContainer'>
-        <label htmlFor='event_venueType'>
-          Venue's Type:
-          <input
-            type='text'
-            name='event_venueType'
-            id='event_venueType'
-            value={event_event_venueType}
-            onChange={e => {
-              event_event_venueType_funk(e);
-            }}
-          />
-        </label>
-      </div>
-      <div className='CreateEvent_inputContainer'>
-        <label htmlFor='event_venueCapacity'>
-          Venue's Capacity:
-          <input
-            type='text'
-            name='event_venueCapacity'
-            id='event_venueCapacity'
-            value={event_event_venueCapacity}
-            onChange={e => {
-              event_event_venueCapacity_funk(e);
-            }}
-          />
-        </label>
-      </div>
-      <div className='CreateEvent_inputContainer'>
-        <label htmlFor='event_venuePostalCode'>
-          Venue's Postal Code:
-          <input
-            type='text'
-            name='event_venuePostalCode'
-            id='event_venuePostalCode'
-            value={event_event_venuePostalCode}
-            onChange={e => {
-              event_event_venuePostalCode_funk(e);
-            }}
-          />
-        </label>
-      </div>
-    </fieldset>
+    <Flex flexDirection='column' align='center' mt='8'>
+      <fieldset>
+        <Text fontWeight='600' color='#FDF8F2' mt='4'>
+          Location Information
+        </Text>
+
+        <Box>
+          <Text
+            htmlFor='event_geoCountryIso2'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            Country:
+            <Select
+              name='event_geoCountryIso2'
+              id='event_geoCountryIso2'
+              value={event_event_geoCountryIso2}
+              onChange={e => {
+                event_event_geoCountryIso2_funk(e);
+              }}
+            >
+              {countriesList.length > 0 &&
+                countriesList.map(country => (
+                  <option
+                    key={country.geoCountryIso2}
+                    value={country.geoCountryIso2}
+                  >
+                    {country.countryName}
+                  </option>
+                ))}
+            </Select>
+          </Text>
+        </Box>
+
+        <Box>
+          <Text
+            htmlFor='event_geoCityName'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            City:
+            <Input
+              type='text'
+              name='event_geoCityName'
+              id='event_geoCityName'
+              value={event_event_geoCityName}
+              onChange={e => {
+                event_event_geoCityName_funk(e);
+              }}
+            />
+          </Text>
+        </Box>
+
+        <Box>
+          <Text
+            htmlFor='event_venueName'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            Venue's Name:
+            <Input
+              type='text'
+              name='event_venueName'
+              id='event_venueName'
+              value={event_event_venueName}
+              onChange={e => {
+                event_event_venueName_funk(e);
+              }}
+            />
+          </Text>
+        </Box>
+
+        <Box>
+          <Text
+            htmlFor='event_venueType'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            Venue's Type:
+            <Input
+              type='text'
+              name='event_venueType'
+              id='event_venueType'
+              value={event_event_venueType}
+              onChange={e => {
+                event_event_venueType_funk(e);
+              }}
+            />
+          </Text>
+        </Box>
+
+        <Box>
+          <Text
+            htmlFor='event_venueCapacity'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            Venue's Capacity:
+            <Input
+              type='text'
+              name='event_venueCapacity'
+              id='event_venueCapacity'
+              value={event_event_venueCapacity}
+              onChange={e => {
+                event_event_venueCapacity_funk(e);
+              }}
+            />
+          </Text>
+        </Box>
+
+        <Box>
+          <Text
+            htmlFor='event_venuePostalCode'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            Venue's Postal Code:
+            <Input
+              type='text'
+              name='event_venuePostalCode'
+              id='event_venuePostalCode'
+              value={event_event_venuePostalCode}
+              onChange={e => {
+                event_event_venuePostalCode_funk(e);
+              }}
+            />
+          </Text>
+        </Box>
+      </fieldset>
+    </Flex>
   );
 };
 
