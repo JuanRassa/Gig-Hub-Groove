@@ -3,6 +3,7 @@ import { CreateFormContext } from '../../../context/CreateFormContext';
 import { countriesList } from '../../../components/helpers/countriesList';
 import { Box, Flex, Text } from '@chakra-ui/layout';
 import { Select, Input } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
 
 const LocationInformation = () => {
   const {
