@@ -77,16 +77,17 @@ const RegisterLogin = () => {
         onSubmit={e => {
           e.preventDefault();
           loginRegisterFunk();
-        }}>
+        }}
+      >
         <div className='InputWrapper'>
           <Input
             value={username}
             onChange={e => {
               handleUsernameInput(e);
             }}
-            variant='filled'
             placeholder='Username'
-          />
+            bgColor='#FDF8F2'
+          ></Input>
         </div>
         <div className='InputWrapper'>
           <InputGroup size='md'>
@@ -95,11 +96,11 @@ const RegisterLogin = () => {
               onChange={e => {
                 handlePasswordInput(e);
               }}
-              variant='filled'
               pr='4.5rem'
               type={show ? 'text' : 'password'}
               placeholder='Enter password'
-            />
+              bgColor='#FDF8F2'
+            ></Input>
             <InputRightElement width='4.5rem'>
               <Button h='1.75rem' size='sm' onClick={handleClick}>
                 {show ? 'Hide' : 'Show'}
