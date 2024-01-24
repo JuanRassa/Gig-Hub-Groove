@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LoginContext } from '../../context/LoginContext';
+import cymaticTrendy5 from './../../assets/cymaticSpin5.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -15,6 +16,7 @@ const Navbar = () => {
     <nav className='Navbar'>
       <div className='Navbar_section Navbar_logoHome'>
         <Link className='Navbar_homeLogo_link Navbar_btn' to='/'>
+          {pathname === '/' ? <img src={cymaticTrendy5} alt='cymatics' /> : <></>}
           Ágora
         </Link>
       </div>

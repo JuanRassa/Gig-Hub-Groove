@@ -13,6 +13,7 @@
 }
 .trendyPack,
 .independentPack {
+  border-radius: 8px;
   cursor: pointer;
   width: 400px;
   display: flex;
@@ -46,6 +47,26 @@
   z-index: 10;
   transition: all 0.4s ease-in-out;
 }
+.trendyCurtain::before {
+  content: '---------------------------------------------------------------';
+  position: absolute;
+  top: 0%;
+  left: -25px;
+  font-size: 4rem;
+  color: transparent;
+  text-decoration-style: wavy;
+  text-decoration-color: #afd74b;
+  text-decoration-line: underline;
+  animation: wavyWave 10s linear infinite;
+  rotate: -90deg;
+  width: 100vw;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.trendyPack:hover ~ .trendyCurtain::before {
+  opacity: 1;
+  transition: all 0.3s ease-in-out 0.3s;
+}
 .trendyPack:hover ~ .trendyCurtain {
   width: 50vw;
   transition: all 0.4s ease-in-out;
@@ -72,9 +93,29 @@
   z-index: 10;
   transition: all 0.4s ease-in-out;
 }
+.independentCurtain::before {
+  content: '---------------------------------------------------------------';
+  position: absolute;
+  top: 0%;
+  right: 25px;
+  font-size: 4rem;
+  color: transparent;
+  text-decoration-style: wavy;
+  text-decoration-color: #3030bb;
+  text-decoration-line: underline;
+  animation: wavyWave 10s linear infinite;
+  rotate: -90deg;
+  width: 100vw;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
 .independentPack:hover ~ .independentCurtain {
   width: 50vw;
   transition: all 0.4s ease-in-out;
+}
+.independentPack:hover ~ .independentCurtain::before {
+  opacity: 1;
+  transition: all 0.3s ease-in-out 0.3s;
 }
 .independentPack:hover ~ .trendyPack {
   opacity: 0;
@@ -104,7 +145,7 @@
   margin-bottom: -23%; */
   transition: all 0.4s ease-in-out;
   margin-left: -50%;
-  scale: 1.5;
+  scale: 1.4;
   z-index: 40;
 }
 .independentPack:hover ~ .cymaticSpin5,
@@ -117,5 +158,13 @@
   }
   100% {
     rotate: 360deg;
+  }
+}
+@keyframes wavyWave {
+  0% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(-100px);
   }
 }

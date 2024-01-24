@@ -7,8 +7,9 @@
   align-items: center;
   padding: 0 2rem;
   width: 100vw;
+  min-height: 90px;
   height: 90px;
-  background-color: #292a2a;
+  background-color: #000;
   border-bottom: 1px solid #fdf8f2;
   color: #fdf8f2;
 }
@@ -45,6 +46,11 @@
   transition: width 0.3s ease-in-out;
 }
 .Navbar_homeLogo_link {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
 }
 .Navbar_loginRegister {
   display: flex;
@@ -110,4 +116,20 @@
   right: 0;
   left: unset;
   border-color: #f76320;
+}
+
+.Navbar_homeLogo_link img {
+  /* position: absolute; */
+  width: 40px;
+  z-index: -10;
+  animation: spinClockWise 8s linear infinite;
+}
+
+@keyframes spinClockWise {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
