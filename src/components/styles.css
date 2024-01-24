@@ -1,0 +1,5 @@
+.cardDisplay:hover {
+  background-color: #a6348e;
+  color: #fdf8f2;
+  transition: all 0.4s ease-in-out;
+}

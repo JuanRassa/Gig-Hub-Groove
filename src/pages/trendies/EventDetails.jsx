@@ -1,6 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Flex,
+  Heading,
+  Text,
+  Divider,
+  Button,
+  Box,
+  Image,
+} from '@chakra-ui/react';
+import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
@@ -28,50 +39,70 @@ function EventDetails() {
   // console.log('Event:', event);
 
   return (
-    <div>
+    <Flex flexDirection='column' align='center' mt='8'>
       {event ? (
-        <div key={event.identifier}>
-          {/* {console.log('Event:', event)} */}
-          <img src={event.image} alt={event.name} style={{ maxWidth: 250 }} />
-          <div>
-            <h2>{event.name}</h2>
-            <h3>{event.location && event.location.name}</h3>
-            <p>
-              {event.location &&
-                event.location.address &&
-                event.location.address.addressLocality}
-            </p>
-            <p>
-              {event.location &&
-                event.location.address &&
-                event.location.address.addressCountry.name}
-            </p>
-            {event.location &&
-              event.location.address &&
-              event.location.address.addressCountry.identifier}
-            <p>
-              {event.location &&
-                event.location.address &&
-                event.location.address.streetAddress}
-            </p>
-          </div>
-          <div>
-            <h3>{event['@type']}</h3>
-            <p>
-              <strong>{event.startDate}</strong>
-            </p>
-          </div>
-          <div>
-            <p>
-              {event.performer &&
-                Array.isArray(event.performer) &&
-                event.performer
-                  .map(performer => performer.name)
-                  .join(', ')}{' '}
-            </p>
+        <Box key={event.identifier} w='80%' maxW='1200px'>
+          <Flex>
+            <Image src={event.image} alt={event.name} maxW='50%' mr='4' />
+
+            <Box>
+              <Heading size='xl' color='#FDF8F2'>
+                {event.name}
+              </Heading>
+
+              <Text fontSize='lg' color='#FDF8F2'>
+                {event.location && event.location.name}
+              </Text>
+
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                Event Type:
+              </Text>
+              <Text fontSize='14px' color='#FDF8F2'>
+                {event['@type']}
+              </Text>
+
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                Start Date:
+              </Text>
+              <Text color='#FDF8F2'>
+                <strong>{event.startDate}</strong>
+              </Text>
+
+              <Text fontWeight='600' color='#FDF8F2' paddingTop='20px'>
+                Location Address:
+              </Text>
+              <Text fontSize='md' color='#FDF8F2'>
+                {event.location &&
+                  event.location.address &&
+                  event.location.address.addressLocality}
+              </Text>
+              <Text fontSize='md' color='#FDF8F2'>
+                {event.location &&
+                  event.location.address &&
+                  event.location.address.addressCountry.name}{' '}
+                -{' '}
+                {event.location &&
+                  event.location.address &&
+                  event.location.address.addressCountry.identifier}
+              </Text>
+
+              <Text fontSize='md' color='#FDF8F2'>
+                {event.location &&
+                  event.location.address &&
+                  event.location.address.streetAddress}
+              </Text>
+            </Box>
+          </Flex>
+
+          <Divider my='4' />
+
+          <Box>
+            <Text fontWeight='600' color='#FDF8F2'>
+              Genres:
+            </Text>
             {(event['@type'] === 'Concert' ||
               event['@type'] === 'Festival') && (
-              <p>
+              <Text color='#FDF8F2'>
                 {event.performer &&
                   Array.isArray(event.performer) &&
                   (() => {
@@ -100,15 +131,50 @@ function EventDetails() {
                       ? filteredGenres.join(',')
                       : '';
                   })()}
-              </p>
+              </Text>
             )}
-          </div>
-          <p>Buy your ticket at:</p>
-          <p>
+
+            <Box>
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                Performers:
+              </Text>
+              <Flex flexWrap='wrap'>
+                {event.performer &&
+                  Array.isArray(event.performer) &&
+                  event.performer.map((performer, index) => (
+                    <Box
+                      key={index}
+                      width={['50%', '50%']}
+                      mb='2'
+                      flexShrink={0}
+                    >
+                      <Text color='#FDF8F2'>{performer.name}</Text>
+                    </Box>
+                  ))}
+              </Flex>
+            </Box>
+          </Box>
+
+          <Button
+            mt='4'
+            bgColor='#A6348E'
+            color='#FDF8F2'
+            _hover={{
+              bgColor: '#FDF8F2',
+              color: '#292A2A',
+            }}
+          >
+            {' '}
+            Buy tickets
             {event.offers &&
               Array.isArray(event.offers) &&
-              event.offers.map(offers => offers.url)}
-          </p>
+              event.offers.map((offers, index) => (
+                <Link key={index} to={offers.url}></Link>
+              ))}
+          </Button>
+
+          <Divider my='4' />
+
           <iframe
             width='600'
             height='450'
@@ -119,11 +185,11 @@ function EventDetails() {
             src='https://www.google.com/maps/embed/v1/place?key=
     &q=Space+Needle,Seattle+WA'
           ></iframe>
-        </div>
+        </Box>
       ) : (
-        <p>Loading...</p>
+        <Spinner />
       )}
-    </div>
+    </Flex>
   );
 }
 
