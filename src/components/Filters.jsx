@@ -10,13 +10,7 @@ import { Flex, Spacer } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 // import './styles.css';
 
-function Filters({
-  showEvents,
-  setShowEvents,
-  filters,
-  setFilters,
-  getEvents,
-}) {
+function Filters({ showEvents, setShowEvents, filters, setFilters, getEvents }) {
   console.log(filters);
 
   const [startDate, setStartDate] = useState('');
@@ -44,31 +38,13 @@ function Filters({
 
   const handleFilter = () => {
     const filtered = showEvents.filter(event => {
-      const matchesCountry =
-        !filters.geoCountryIso2 ||
-        event.geoCountryIso2 === filters.geoCountryIso2;
-      const matchesArtist =
-        !filters.artistName ||
-        event.artistName
-          .toLowerCase()
-          .includes(filters.artistName.toLowerCase());
-      const matchesEventType =
-        !filters.eventType ||
-        (event['@type'] && event['@type'] === filters.eventType);
-      const matchesDateRange =
-        !startDate ||
-        !endDate ||
-        (event.date >= startDate && event.date <= endDate);
-      const matchesGenre =
-        !filters.genreSlug || event.genreSlug === filters.genreSlug;
+      const matchesCountry = !filters.geoCountryIso2 || event.geoCountryIso2 === filters.geoCountryIso2;
+      const matchesArtist = !filters.artistName || event.artistName.toLowerCase().includes(filters.artistName.toLowerCase());
+      const matchesEventType = !filters.eventType || (event['@type'] && event['@type'] === filters.eventType);
+      const matchesDateRange = !startDate || !endDate || (event.date >= startDate && event.date <= endDate);
+      const matchesGenre = !filters.genreSlug || event.genreSlug === filters.genreSlug;
 
-      return (
-        matchesCountry &&
-        matchesArtist &&
-        matchesEventType &&
-        matchesDateRange &&
-        matchesGenre
-      );
+      return matchesCountry && matchesArtist && matchesEventType && matchesDateRange && matchesGenre;
     });
     // console.log('Filtered Events', filtered);
     setFilters({ ...filters, eventDateFrom: startDate, eventDateTo: endDate });
@@ -89,9 +65,8 @@ function Filters({
           padding='20px'
           margin='10px 30px 30px 30px'
           bgColor='rgba(41,42,42,0.1)'
-          borderRadius='5px'
-        >
-          <Box h='80px'>
+          borderRadius='5px'>
+          <Box display='flex' alignItems='center' flexDirection='column' justifyContent='center' gap='2'>
             <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Country:
             </Text>
@@ -102,8 +77,7 @@ function Filters({
               onChange={handleInputChange}
               border='1px'
               borderColor='#FDF8F2'
-              color='#FDF8F2'
-            >
+              color='#FDF8F2'>
               <option value=''>All Countries</option>
               <option value='AD'>Andorra</option>
               <option value='AO'>Angola</option>
@@ -156,7 +130,7 @@ function Filters({
             </Select>
           </Box>
 
-          <Box h='80px'>
+          <Box display='flex' alignItems='center' flexDirection='column' justifyContent='center' gap='2'>
             <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Artist Name:
             </Text>
@@ -172,7 +146,7 @@ function Filters({
             />
           </Box>
 
-          <Box h='80px'>
+          <Box display='flex' alignItems='center' flexDirection='column' justifyContent='center' gap='2'>
             <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Date Range:
             </Text>
@@ -184,16 +158,10 @@ function Filters({
               onChange={handleInputChange}
               marginBottom='5px'
             />
-            <Input
-              className='filter-datepicker'
-              type='date'
-              name='eventDateTo'
-              value={filters.eventDateTo}
-              onChange={handleInputChange}
-            />
+            <Input className='filter-datepicker' type='date' name='eventDateTo' value={filters.eventDateTo} onChange={handleInputChange} />
           </Box>
 
-          <Box h='80px'>
+          <Box display='flex' alignItems='center' flexDirection='column' justifyContent='center' gap='2'>
             <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Type of event:
             </Text>
@@ -205,8 +173,7 @@ function Filters({
                   onChange={handleRadioChange}
                   border='2px'
                   borderColor='#FDF8F2'
-                  color='#FDF8F2'
-                >
+                  color='#FDF8F2'>
                   <Text color='#FDF8F2'>Festival</Text>
                 </Radio>
                 <Radio
@@ -215,15 +182,14 @@ function Filters({
                   onChange={handleRadioChange}
                   border='2px'
                   borderColor='#FDF8F2'
-                  color='#FDF8F2'
-                >
+                  color='#FDF8F2'>
                   <Text color='#FDF8F2'>Concert</Text>
                 </Radio>
               </Stack>
             </RadioGroup>
           </Box>
 
-          <Box h='80px'>
+          <Box display='flex' alignItems='center' flexDirection='column' justifyContent='center' gap='2'>
             <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Genre:
             </Text>
@@ -234,8 +200,7 @@ function Filters({
               onChange={handleInputChange}
               border='1px'
               borderColor='#FDF8F2'
-              color='#FDF8F2'
-            >
+              color='#FDF8F2'>
               <option value=''>All Genres</option>
               <option value='bluegrass'>Bluegrass</option>
               <option value='blues'>Blues</option>
@@ -258,8 +223,9 @@ function Filters({
             </Select>
           </Box>
 
-          <Box>
+          <Box display='flex' justifyContent='center' alignItems='center' w='100%' mt='4'>
             <Button
+              w='30%'
               bgColor='#292A2A'
               variant='outline'
               _hover={{
@@ -267,8 +233,7 @@ function Filters({
               }}
               onClick={() => {
                 getEvents();
-              }}
-            >
+              }}>
               <Text color='white'>Apply Filters</Text>
             </Button>
           </Box>
