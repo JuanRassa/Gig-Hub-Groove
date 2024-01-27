@@ -3,13 +3,7 @@ import { CreateFormContext } from '../../../context/CreateFormContext';
 import { Flex, Text, Heading, Box } from '@chakra-ui/layout';
 import { Input, Textarea } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from '@chakra-ui/react';
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react';
 
 const GeneralInfo = () => {
   const {
@@ -48,16 +42,11 @@ const GeneralInfo = () => {
             <AccordionPanel pb={4}>
               <FormControl isRequired>
                 <Box>
-                  <FormLabel
-                    htmlFor='event_name'
-                    fontSize='14px'
-                    fontWeight='600'
-                    color='#FDF8F2'
-                    mt='4'
-                  >
+                  <FormLabel htmlFor='event_name' fontSize='14px' fontWeight='600' color='#FDF8F2' mt='4'>
                     Event's Name:
                   </FormLabel>
                   <Input
+                    color='#FDF8F2'
                     type='text'
                     name='event_name'
                     id='event_name'
@@ -71,15 +60,11 @@ const GeneralInfo = () => {
 
               <FormControl isRequired>
                 <Box>
-                  <FormLabel
-                    htmlFor='event_start-date'
-                    fontWeight='600'
-                    color='#FDF8F2'
-                    mt='4'
-                  >
+                  <FormLabel htmlFor='event_start-date' fontWeight='600' color='#FDF8F2' mt='4'>
                     Start Date:
                   </FormLabel>
                   <Input
+                    color='#FDF8F2'
                     type='date'
                     name='event_start-date'
                     id='event_start-date'
@@ -89,15 +74,11 @@ const GeneralInfo = () => {
                     }}
                   />
 
-                  <FormLabel
-                    htmlFor='event_end-date'
-                    fontWeight='600'
-                    color='#FDF8F2'
-                    mt='4'
-                  >
+                  <FormLabel htmlFor='event_end-date' fontWeight='600' color='#FDF8F2' mt='4'>
                     End Date:
                   </FormLabel>
                   <Input
+                    color='#FDF8F2'
                     type='date'
                     name='event_end-date'
                     id='event_end-date'
@@ -110,12 +91,7 @@ const GeneralInfo = () => {
               </FormControl>
 
               <Box>
-                <Text
-                  htmlFor='event_image'
-                  fontWeight='600'
-                  color='#FDF8F2'
-                  mt='4'
-                >
+                <Text htmlFor='event_image' fontWeight='600' color='#FDF8F2' mt='4'>
                   Image URL:
                   <Input
                     type='url'
@@ -130,12 +106,7 @@ const GeneralInfo = () => {
               </Box>
 
               <Box>
-                <Text
-                  htmlFor='event_description'
-                  fontWeight='600'
-                  color='#FDF8F2'
-                  mt='4'
-                >
+                <Text htmlFor='event_description' fontWeight='600' color='#FDF8F2' mt='4'>
                   Description:
                   <Textarea
                     name='event_description'
