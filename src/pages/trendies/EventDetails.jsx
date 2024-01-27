@@ -5,26 +5,62 @@ import { Link } from 'react-router-dom';
 import { Flex, Heading, Text, Divider, Button, Box, Image } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
+import './styles.css';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
-
+  console.log('LT', event?.location?.geo?.latitude);
+  console.log('LG', event?.location?.geo?.longitude);
   useEffect(() => {
     axios
       .get(`https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`)
       .then(response => {
         // console.log('API Response:', response.data);
         const eventFromApi = response.data.event;
-        // console.log('Event from API:', eventFromApi);
+        console.log('Event from API:', eventFromApi);
         setEvent(eventFromApi);
       })
       .catch(error => {
         console.log(error);
       });
   }, [eventId]);
+
+  useEffect(() => {
+    if (event) {
+      // Initialize and add the map
+      let map;
+
+      async function initMap() {
+        // The location of Uluru
+        // const position = { lat: -25.344, lng: 131.031 };
+        // const position = { lat: 26.0537, lng: -80.2095 };
+        const position = { lat: event?.location?.geo?.latitude, lng: event?.location?.geo?.longitude };
+        // Request needed libraries.
+        //@ts-ignore
+        const { Map } = await google.maps.importLibrary('maps');
+        const { AdvancedMarkerView } = await google.maps.importLibrary('marker');
+
+        // The map, centered at Uluru
+        map = new Map(document.getElementById('map'), {
+          zoom: 4,
+          center: position,
+          mapId: 'DEMO_MAP_ID',
+        });
+
+        // The marker, positioned at Uluru
+        const marker = new AdvancedMarkerView({
+          map: map,
+          position: position,
+          title: '',
+        });
+      }
+
+      initMap();
+    }
+  }, [event]);
 
   // console.log('Event:', event);
 
@@ -147,15 +183,7 @@ function EventDetails() {
 
           <Divider my='4' />
 
-          <iframe
-            width='600'
-            height='450'
-            style={{ border: 0 }}
-            loading='lazy'
-            allowFullScreen
-            referrerPolicy='no-referrer-when-downgrade'
-            src='https://www.google.com/maps/embed/v1/place?key=
-    &q=Space+Needle,Seattle+WA'></iframe>
+          <div id='map'></div>
         </Box>
       ) : (
         <Spinner size='xl' color='#FDF8F2' />

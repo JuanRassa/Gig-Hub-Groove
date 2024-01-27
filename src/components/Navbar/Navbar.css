@@ -172,7 +172,6 @@
 }
 
 .Navbar_trendy_link:hover img {
-  left: 15px;
   transition: all 0.4s ease-in-out;
 }
 .Navbar_independent_link:hover img {
