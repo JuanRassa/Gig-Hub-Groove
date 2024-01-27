@@ -12,3 +12,16 @@
   width: 394px;
   height: 193px;
 }
+
+.react-datepicker__input-container input {
+  border: 1px solid #fdf8f2 !important;
+  border-radius: 5px !important;
+  padding: 5px !important;
+}
+
+.filter-datepicker {
+  display: inline-block;
+  background-color: #292a2a;
+  color: #fdf8f2;
+  margin-left: 5px !important;
+}
