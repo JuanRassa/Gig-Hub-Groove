@@ -24,11 +24,13 @@ const Navbar = () => {
       </div>
       {pathname !== '/' && (
         <div className='Navbar_section Navbar_trendyIndependent'>
-          <Link className='Navbar_btn Navbar_trendy_link' to='/allconcerts'>
+          <Link className={`Navbar_btn Navbar_trendy_link ${pathname === '/allconcerts' ? 'activePage' : ''}`} to='/allconcerts'>
             Trendy
+            <img src={cymaticTrendy1} alt='cymatic' />
           </Link>
-          <Link className='Navbar_btn Navbar_independent_link' to='/independent'>
+          <Link className={`Navbar_btn Navbar_independent_link ${pathname === '/independent' ? 'activePage' : ''}`} to='/independent'>
             Independent
+            <img src={cymaticTrendy3} alt='cymatic' />
           </Link>
         </div>
       )}
