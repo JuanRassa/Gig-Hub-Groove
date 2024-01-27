@@ -150,6 +150,8 @@
 .Navbar_independent_link {
   position: relative;
   display: flex;
+  justify-content: center;
+  width: 120px;
 }
 .Navbar_trendy_link img,
 .Navbar_independent_link img {
@@ -163,7 +165,7 @@
 }
 
 .Navbar_trendy_link img {
-  left: 15px;
+  left: 40px;
 }
 .Navbar_independent_link img {
   left: 35px;
@@ -192,11 +194,11 @@
 }
 .Navbar_trendy_link.activePage img {
   top: -35px;
-  left: 8px;
+  left: 31px;
 }
 .Navbar_independent_link.activePage img {
   top: -35px;
-  left: 25px;
+  left: 30px;
 }
 .Navbar_trendy_link.activePage::after {
   width: 100%;
