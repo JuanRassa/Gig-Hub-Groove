@@ -27,20 +27,40 @@ function HomePage() {
     <div className='HomePage'>
       <div className='linkContainer'>
         <div className='trendyPack'>
-          <Link className='trendyPack_link' to='/allconcerts' onMouseEnter={handleLinkHover} onMouseLeave={handleLinkLeave}>
-            <Heading size='lg' color='#FDF8F2' textAlign='center' fontFamily='Josefin Sans'>
+          <Link
+            className='trendyPack_link'
+            to='/allconcerts'
+            onMouseEnter={handleLinkHover}
+            onMouseLeave={handleLinkLeave}
+          >
+            <Heading
+              size='lg'
+              color='#FDF8F2'
+              textAlign='center'
+              fontFamily='Josefin Sans'
+            >
               Trendy Concerts
             </Heading>
             <Text fontSize='lg' fontFamily='Josefin Sans'>
-              Check out the most trendy concerts neer you!
+              Check out the most trendy concerts near you!
             </Text>
           </Link>
         </div>
         <div className='trendyCurtain'></div>
 
         <div className='independentPack'>
-          <Link className='independentPack_link' to='/independent' onMouseEnter={handleLinkHover} onMouseLeave={handleLinkLeave}>
-            <Heading size='lg' color='#FDF8F2' textAlign='center' fontFamily='Josefin Sans'>
+          <Link
+            className='independentPack_link'
+            to='/independent'
+            onMouseEnter={handleLinkHover}
+            onMouseLeave={handleLinkLeave}
+          >
+            <Heading
+              size='lg'
+              color='#FDF8F2'
+              textAlign='center'
+              fontFamily='Josefin Sans'
+            >
               Independent
             </Heading>
             <Text fontSize='lg' fontFamily='Josefin Sans'>
@@ -49,9 +69,21 @@ function HomePage() {
           </Link>
         </div>
         <div className='independentCurtain'></div>
-        <img className='cymaticSpin cymaticSpin1' src={cymaticTrendy1} alt='cymatics' />
-        <img className='cymaticSpin cymaticSpin3' src={cymaticTrendy3} alt='cymatics' />
-        <img className='cymaticSpin cymaticSpin5' src={cymaticTrendy5} alt='cymatics' />
+        <img
+          className='cymaticSpin cymaticSpin1'
+          src={cymaticTrendy1}
+          alt='cymatics'
+        />
+        <img
+          className='cymaticSpin cymaticSpin3'
+          src={cymaticTrendy3}
+          alt='cymatics'
+        />
+        <img
+          className='cymaticSpin cymaticSpin5'
+          src={cymaticTrendy5}
+          alt='cymatics'
+        />
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ const LineUpInformation = () => {
     },
   } = useContext(CreateFormContext);
 
-  console.log(event_type_value);
+  // console.log(event_type_value);
 
   const festival_type_view_JSX = () => {
     return (
@@ -66,14 +66,119 @@ const LineUpInformation = () => {
   const concert_type_view_JSX = () => {
     return (
       <Flex flexDirection='column' align='center' mt='8'>
-        <Text
-          className='CreateEvent_lineUpInfo'
-          fontWeight='600'
-          color='#FDF8F2'
-          mt='4'
-        >
-          <legend>Artist Information</legend>
-        </Text>
+        <fieldset>
+          <Text
+            className='CreateEvent_lineUpInfo'
+            fontWeight='600'
+            color='#FDF8F2'
+            mt='4'
+          >
+            <legend>Artist Information</legend>
+          </Text>
+          <Button
+            onClick={e => {
+              e.preventDefault();
+              event_ADD_performer_array_funk();
+            }}
+          >
+            Add Performer
+          </Button>
+          {event_performer_array.length > 0 &&
+            event_performer_array.map((performer, index) => (
+              <div key={index} className='CreateEvent_inputContainer'>
+                <Text
+                  htmlFor={`event_performer_name_${index}`}
+                  fontWeight='600'
+                  color='#FDF8F2'
+                  mt='4'
+                >
+                  Performer's Name:
+                </Text>
+                <Input
+                  type='text'
+                  name={`event_performer_name_${index}`}
+                  id={`event_performer_name_${index}`}
+                  placeholder={`Input ${index + 1}`}
+                  value={performer.name}
+                  onChange={e => {
+                    handleChange(index, 'name', e);
+                  }}
+                />
+                <Text
+                  htmlFor={`event_performer_genre_${index}`}
+                  fontWeight='600'
+                  color='#FDF8F2'
+                  mt='4'
+                >
+                  Genre:
+                  <Input
+                    type='text'
+                    name={`event_performer_genre_${index}`}
+                    id={`event_performer_genre_${index}`}
+                    placeholder={`Input ${index + 1}`}
+                    value={performer.genre}
+                    onChange={e => {
+                      handleChange(index, 'genre', e);
+                    }}
+                  />
+                </Text>
+                <Text
+                  htmlFor={`event_performer_genre_${index}`}
+                  fontWeight='600'
+                  color='#FDF8F2'
+                  mt='4'
+                >
+                  Origen:
+                  <Input
+                    type='text'
+                    name={`event_performer_geoCountryIso2_${index}`}
+                    id={`event_performer_geoCountryIso2_${index}`}
+                    placeholder={`Input ${index + 1}`}
+                    value={performer.geoCountryIso2}
+                    onChange={e => {
+                      handleChange(index, 'geoCountryIso2', e);
+                    }}
+                  />
+                </Text>
+                <Text
+                  htmlFor={`event_image_url_${index}`}
+                  fontWeight='600'
+                  color='#FDF8F2'
+                  mt='4'
+                >
+                  Image URL:
+                  <Input
+                    type='text'
+                    name={`event_performer_image_${index}`}
+                    id={`event_performer_image_${index}`}
+                    placeholder={`Image URL ${index + 1}`}
+                    value={performer.image}
+                    onChange={e => {
+                      handleChange(index, 'image', e);
+                    }}
+                  />
+                </Text>
+                <Text
+                  htmlFor={`event_performer_url_${index}`}
+                  fontWeight='600'
+                  color='#FDF8F2'
+                  mt='4'
+                >
+                  Artist URL:
+                  <Input
+                    type='text'
+                    name={`event_performer_url_${index}`}
+                    id={`event_performer_url_${index}`}
+                    placeholder={`URL ${index + 1}`}
+                    value={performer.url}
+                    onChange={e => {
+                      handleChange(index, 'url', e);
+                    }}
+                  />
+                </Text>
+              </div>
+            ))}
+        </fieldset>
       </Flex>
     );
   };
