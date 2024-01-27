@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 16px;
+  margin-bottom: 80px;
 }
 .MainTitle {
   text-align: center;
