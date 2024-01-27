@@ -145,7 +145,9 @@ const EditEvent = () => {
         set_Event_venueType(eventFromApi.location.type);
         set_Event_venueCapacity(eventFromApi.location.capacity);
         set_Event_venuePostalCode(eventFromApi.location.postalAdress);
-        eventFromApi.type.toLowerCase() === 'festival' ? set_Event_type_value('festival') : set_Event_type_value('concert');
+        eventFromApi.type.toLowerCase() === 'festival'
+          ? set_Event_type_value('festival')
+          : set_Event_type_value('concert');
         set_Event_performer_array(eventFromApi.performer);
       })
       .catch(error => {
@@ -174,7 +176,10 @@ const EditEvent = () => {
             event_event_venueCapacity_ctx: [event_event_venueCapacity],
             event_event_venuePostalCode_ctx: [event_event_venuePostalCode],
             // LineUp Info:
-            event_performer_array_ctx: [event_performer_array, set_Event_performer_array],
+            event_performer_array_ctx: [
+              event_performer_array,
+              set_Event_performer_array,
+            ],
           },
           funks: {
             // Performers Info:
@@ -186,23 +191,31 @@ const EditEvent = () => {
             event_image_url_funk_ctx: event_image_url_funk,
             event_event_description_funk_ctx: event_event_description_funk,
             // Location Info:
-            event_event_geoCountryIso2_funk_ctx: event_event_geoCountryIso2_funk,
+            event_event_geoCountryIso2_funk_ctx:
+              event_event_geoCountryIso2_funk,
             event_event_geoCityName_funk_ctx: event_event_geoCityName_funk,
             event_event_venueName_funk_ctx: event_event_venueName_funk,
             event_event_venueType_funk_ctx: event_event_venueType_funk,
             event_event_venueCapacity_funk_ctx: event_event_venueCapacity_funk,
-            event_event_venuePostalCode_funk_ctx: event_event_venuePostalCode_funk,
+            event_event_venuePostalCode_funk_ctx:
+              event_event_venuePostalCode_funk,
             // Performers Info:
             event_ADD_performer_array_funk_ctx: event_ADD_performer_array_funk,
             handleChange_ctx: handleChange,
           },
-        }}>
+        }}
+      >
         <form onSubmit={submitEdition}>
           <GeneralInfo />
           <LocationInformation />
           <TypeOfEvent />
           <LineUpInformation />
-          <Flex flexDirection='column' align='center' mt='8' paddingBottom='30px'>
+          <Flex
+            flexDirection='column'
+            align='center'
+            mt='8'
+            paddingBottom='30px'
+          >
             <Button
               className='submitEditBtn'
               type='submit'
@@ -211,7 +224,8 @@ const EditEvent = () => {
               _hover={{
                 bgColor: '#292A2A',
                 color: '#FDF8F2',
-              }}>
+              }}
+            >
               Edit
             </Button>
           </Flex>

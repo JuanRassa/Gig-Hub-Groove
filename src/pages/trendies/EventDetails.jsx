@@ -101,7 +101,7 @@ function EventDetails() {
 
                     const filteredGenres = Array.from(uniqueGenres);
 
-                    return filteredGenres.length > 0 ? filteredGenres.join(',') : '';
+                    return filteredGenres.length > 0 ? filteredGenres.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(', ') : '';
                   })()}
               </Text>
             )}
@@ -153,7 +153,7 @@ function EventDetails() {
     &q=Space+Needle,Seattle+WA'></iframe>
         </Box>
       ) : (
-        <Spinner color='#FDF8F2' />
+        <Spinner size='xl' color='#FDF8F2' />
       )}
     </Flex>
   );

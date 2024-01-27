@@ -129,7 +129,7 @@ function EventDetailsIndependent() {
           </Button>
         </Box>
       ) : (
-        <Spinner color='#FDF8F2' />
+        <Spinner size='xl' color='#FDF8F2' />
       )}
     </Flex>
   );
