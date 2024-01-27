@@ -55,26 +55,17 @@ const HomeIndependent = () => {
 
   return (
     <div className='HomeIndependent'>
-      <Text
-        fontSize='28px'
-        fontWeight='600'
-        align='center'
-        color='#FDF8F2'
-        paddingBottom='20px'
-        paddingTop='20px'
-      >
+      <Text fontSize='28px' fontWeight='600' align='center' color='#FDF8F2' paddingBottom='20px' paddingTop='20px'>
         Independent Concerts
       </Text>
 
-      <SearchBar
-        allIndependent={allIndependent}
-        setShowIndependent={setShowIndependent}
-      />
+      <SearchBar allIndependent={allIndependent} setShowIndependent={setShowIndependent} />
 
       <Flex justifyContent='center'>
         <Button
+          className='createEvent'
           as={Link}
-          bgColor='#AFD74B'
+          // bgColor='#AFD74B'
           to={isLogged ? '/create-event' : '/login'}
           onClick={() => {
             window.sessionStorage.setItem('triedToCreateOrEdit', 'yes');
@@ -83,31 +74,18 @@ const HomeIndependent = () => {
             bgColor: '#292A2A',
             color: '#FDF8F2',
             border: '1px solid #FDF8F2',
-          }}
-        >
+          }}>
           Create new events
         </Button>
       </Flex>
 
-      <Flex
-        flexWrap='wrap'
-        justifyContent='space-evenly'
-        gap='16px'
-        paddingTop='30px'
-      >
+      <Flex flexWrap='wrap' justifyContent='space-evenly' gap='16px' paddingTop='30px'>
         {loading ? (
           <Spinner size='xl' color='#FDF8F2' />
         ) : (
           <div className='AllIndependent__container'>
             {showIndependent.map(event => {
-              return (
-                <ChakraCard
-                  key={event.id}
-                  events={event}
-                  defaultColor='#FDF8F2'
-                  hoverColor='#AFD74B'
-                />
-              );
+              return <ChakraCard key={event.id} events={event} defaultColor='#FDF8F2' hoverColor='#AFD74B' />;
             })}
           </div>
         )}

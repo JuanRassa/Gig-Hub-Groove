@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../context/LoginContext';
+import { IconButton } from '@chakra-ui/react';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
 import { Card, CardHeader, CardBody, CardFooter, Stack, Heading, Divider, ButtonGroup, Button, Text } from '@chakra-ui/react';
 
@@ -50,33 +52,35 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing='2'>
+        <ButtonGroup spacing='4'>
+          {pathname === '/allconcerts' && (
+            <Link className='card__learnMore' to={`/allconcerts/${events.identifier}`} size='small'>
+              Learn More
+            </Link>
+          )}
+          {pathname === '/independent' && (
+            <Link className='card__learnMore' to={`/independent/${events.id}`} size='small'>
+              Learn More
+            </Link>
+          )}
           {pathname === '/independent' && (
             <button
               style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
-              className={`${!isLogged ? 'disabled' : ''}`}
+              className={`actionBtnActive card_deleteButton ${!isLogged ? 'disabled' : ''}`}
               onClick={() => {
                 deleteEventIdependent(events.id);
               }}>
-              Delete {events.id}
+              {/* Delete {events.id} */}
+              <DeleteIcon />
             </button>
           )}
           {pathname === '/independent' && (
             <Link
               to={`/independent/edit-event/${events.id}`}
               style={{ pointerEvents: !isLogged ? 'none' : 'all' }}
-              className={`${!isLogged ? 'disabled' : ''}`}>
-              Edit {events.id}
-            </Link>
-          )}
-          {pathname === '/allconcerts' && (
-            <Link to={`/allconcerts/${events.identifier}`} size='small'>
-              Learn More
-            </Link>
-          )}
-          {pathname === '/independent' && (
-            <Link to={`/independent/${events.id}`} size='small'>
-              Learn More
+              className={`actionBtnActive card_editButton ${!isLogged ? 'disabled' : ''}`}>
+              {/* Edit {events.id} */}
+              <EditIcon />
             </Link>
           )}
         </ButtonGroup>

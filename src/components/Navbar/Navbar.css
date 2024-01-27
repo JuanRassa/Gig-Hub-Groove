@@ -12,6 +12,7 @@
   background-color: #000;
   border-bottom: 1px solid #fdf8f2;
   color: #fdf8f2;
+  overflow: hidden;
 }
 .Navbar_section {
   min-width: 220px;
@@ -116,16 +117,14 @@
   border-color: #a6348e;
 }
 .Navbar_independent_link:hover {
-  color: #f76320;
-  color: #3030bb;
+  color: var(--independent-color);
   transition: all 0.2s ease-in-out;
 }
 .Navbar_independent_link.Navbar_btn:hover::after {
   width: 100%;
   right: 0;
   left: unset;
-  border-color: #f76320;
-  border-color: #3030bb;
+  border-color: var(--independent-color);
 }
 
 .Navbar_homeLogo_link img {
@@ -187,8 +186,7 @@
   pointer-events: none;
 }
 .Navbar_independent_link.activePage {
-  color: #f76320;
-  color: #3030bb;
+  color: var(--independent-color);
   pointer-events: none;
 }
 .Navbar_trendy_link.activePage img {
@@ -205,8 +203,7 @@
 }
 .Navbar_independent_link.activePage::after {
   width: 100%;
-  border-color: #f76320;
-  border-color: #3030bb;
+  border-color: var(--independent-color);
 }
 
 @keyframes spinClockWise {

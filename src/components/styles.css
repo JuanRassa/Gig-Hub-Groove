@@ -4,11 +4,45 @@
   transition: all 0.4s ease-in-out;
 }
 .cardDisplayIndependent:hover {
-  background-color: #afd74b;
+  background-color: var(--independent-color);
   color: #fdf8f2;
   transition: all 0.4s ease-in-out;
+}
+.cardDisplay:hover .card__learnMore {
+  border: 1px solid #fff;
 }
 .cardDisplay img {
   width: 394px;
   height: 193px;
+}
+.card__learnMore {
+  border: 1px solid rgb(26, 32, 44);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.card_editButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card__learnMore:hover {
+  color: rgb(26, 32, 44);
+  background-color: white;
+  transition: all 0.4s ease-in-out;
+}
+.cardDisplay .disabled {
+  opacity: 0.3;
+  cursor: no-drop;
+}
+.cardDisplay .actionBtnActive {
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+.cardDisplay .card_deleteButton:hover {
+  background-color: red;
+  transition: all 0.4s ease-in-out;
+}
+.cardDisplay .card_editButton:hover {
+  background-color: blue;
+  transition: all 0.4s ease-in-out;
 }
