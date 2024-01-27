@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
 import { Input } from '@chakra-ui/react';
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
 import { Select } from '@chakra-ui/react';
@@ -19,8 +19,8 @@ function Filters({
 }) {
   console.log(filters);
 
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -30,6 +30,16 @@ function Filters({
   const handleRadioChange = e => {
     const { value } = e.target;
     setFilters({ ...filters, eventType: value });
+  };
+
+  const handleStartDateChange = e => {
+    const { value } = e.target;
+    setFilters({ ...filters, eventDateFrom: value });
+  };
+
+  const handleEndDateChange = e => {
+    const { value } = e.target;
+    setFilters({ ...filters, eventDateTo: value });
   };
 
   const handleFilter = () => {
@@ -155,6 +165,7 @@ function Filters({
               type='text'
               name='artistName'
               border='1px'
+              color='#FDF8F2'
               borderColor='#FDF8F2'
               value={filters.artistName}
               onChange={handleInputChange}
@@ -165,22 +176,20 @@ function Filters({
             <Text fontSize='14px' fontWeight='600' color='#FDF8F2'>
               Date Range:
             </Text>
-            <DatePicker
+            <Input
               className='filter-datepicker'
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
+              type='date'
+              name='eventDateFrom'
+              value={filters.eventDateFrom}
+              onChange={handleInputChange}
+              marginBottom='5px'
             />
-            <DatePicker
+            <Input
               className='filter-datepicker'
-              selected={endDate}
-              onChange={date => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
+              type='date'
+              name='eventDateTo'
+              value={filters.eventDateTo}
+              onChange={handleInputChange}
             />
           </Box>
 
