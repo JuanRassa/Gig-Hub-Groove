@@ -83,7 +83,7 @@ function Filters({
           flexDirection='row'
           justifyContent='space-between'
           alignContent='space-around'
-          gap='5px'
+          gap='8px'
           border='1px'
           borderColor='gray.200'
           padding='20px'
@@ -260,10 +260,10 @@ function Filters({
 
           <Box>
             <Button
-              bgColor='#A6348E'
+              bgColor='#292A2A'
               variant='outline'
               _hover={{
-                bgColor: '#292A2A',
+                bgColor: '#A6348E',
               }}
               onClick={() => {
                 getEvents();
