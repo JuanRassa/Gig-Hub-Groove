@@ -14,12 +14,15 @@ import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
 import EditEvent from './pages/independent/EditEvent/EditEvent';
 import Navbar from './components/Navbar/Navbar';
 import { ChakraProvider } from '@chakra-ui/react';
+import { Popup } from './components/Popup/Popup';
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [usernameAuth, setUsernameAuth] = useState('');
   const [userIdAuth, setUserIdAuth] = useState('');
   const [triggerIndependentGet, setTriggerIndependentGet] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
 
   useEffect(() => {
     const is_logged = window.sessionStorage.getItem('is_logged');
@@ -43,7 +46,10 @@ function App() {
             usernameAuthCtx: [usernameAuth, setUsernameAuth],
             userIdAuthCtx: [userIdAuth, setUserIdAuth],
             triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
+            isPopupOpenCtx: [isPopupOpen, setIsPopupOpen],
+            popupMessageCtx: [popupMessage, setPopupMessage],
           }}>
+          <Popup />
           <Navbar />
           <Routes>
             <Route path='/' element={<HomePage />} />

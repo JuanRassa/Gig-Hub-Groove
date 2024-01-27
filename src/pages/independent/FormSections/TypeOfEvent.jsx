@@ -18,7 +18,7 @@ const TypeOfEvent = () => {
   return (
     <Flex flexDirection='column' align='center' mt='8'>
       <fieldset>
-        <Text fontWeight='600' color='#FDF8F2' mt='2'>
+        <Text fontWeight='600' color='#FDF8F2' mt='2' textAlign='center'>
           Type of Event
         </Text>
 

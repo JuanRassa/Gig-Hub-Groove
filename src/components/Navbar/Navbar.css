@@ -91,6 +91,7 @@
 }
 .Navbar_logged_message {
   max-width: 130px;
+  pointer-events: none;
 }
 .Navbar_logged_logOut {
 }

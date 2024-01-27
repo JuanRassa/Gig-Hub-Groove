@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../context/LoginContext';
-import { IconButton } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
 import { Card, CardHeader, CardBody, CardFooter, Stack, Heading, Divider, ButtonGroup, Button, Text } from '@chakra-ui/react';
@@ -12,6 +11,8 @@ import './styles.css';
 
 const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishList }) => {
   const {
+    isPopupOpenCtx: [, setIsPopupOpen],
+    popupMessageCtx: [, setPopupMessage],
     isLoggedCtx: [isLogged],
     triggerIndependentGetCtx: [, setTriggerIndependentGet],
   } = useContext(LoginContext);
@@ -34,6 +35,12 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
       const response = await axios.delete(`https://gig-hub-independent.adaptable.app/events/${id}`);
       if (response.status === 200) {
         setTriggerIndependentGet(true);
+        setIsPopupOpen(true);
+        setPopupMessage('The event has been deleted.');
+        setTimeout(() => {
+          setIsPopupOpen(false);
+          setPopupMessage('');
+        }, 1800);
       }
     } catch (error) {
       console.log(error);

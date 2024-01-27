@@ -47,7 +47,7 @@ const Navbar = () => {
         )}
         {isLogged && (
           <Link className='Navbar_loginRegister_login Navbar_btn Navbar_logged_message' to='my-favorites'>
-            Hi {userIdAuth}-{usernameAuth}
+            Hi {usernameAuth}!
           </Link>
         )}
         {isLogged && (

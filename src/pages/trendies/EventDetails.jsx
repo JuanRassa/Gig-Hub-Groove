@@ -57,6 +57,12 @@ function EventDetails() {
               <Text color='#FDF8F2'>
                 <strong>{event.startDate}</strong>
               </Text>
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                End Date:
+              </Text>
+              <Text color='#FDF8F2'>
+                <strong>{event.endDate}</strong>
+              </Text>
 
               <Text fontWeight='600' color='#FDF8F2' paddingTop='20px'>
                 Location Address:

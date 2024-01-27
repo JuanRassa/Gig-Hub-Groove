@@ -75,16 +75,6 @@ const LineUpInformation = () => {
                     <option value='rhythm-and-blues-soul'>R&B</option>
                     <option value='rock'>Rock</option>
                   </Select>
-                  {/* <Input
-                    type='text'
-                    name='genre'
-                    id={`event_performer_genre_${index}`}
-                    placeholder={`Input ${index + 1}`}
-                    value={performer.genre}
-                    onChange={e => {
-                      handleChange(index, 'genre', e);
-                    }}
-                  /> */}
                 </Text>
               </div>
             ))}
@@ -114,8 +104,8 @@ const LineUpInformation = () => {
                   type='text'
                   name='name'
                   id='event_performer_name-solo'
-                  placeholder={`"Your artist...`}
-                  value={performer.value}
+                  placeholder={`Your artist...`}
+                  value={performer.name}
                   onChange={e => {
                     handleChange(index, e);
                   }}
@@ -148,16 +138,6 @@ const LineUpInformation = () => {
                     <option value='rhythm-and-blues-soul'>R&B</option>
                     <option value='rock'>Rock</option>
                   </Select>
-                  {/* <Input
-                    type='text'
-                    name='genre'
-                    id={`event_performer_genre_${index}`}
-                    placeholder={`Input ${index + 1}`}
-                    value={performer.genre}
-                    onChange={e => {
-                      handleChange(index, 'genre', e);
-                    }}
-                  /> */}
                 </Text>
                 {/* <Text htmlFor={`event_performer_genre_${index}`} fontWeight='600' color='#FDF8F2' mt='4'>
                   Origen:

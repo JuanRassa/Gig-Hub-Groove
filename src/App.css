@@ -17,8 +17,8 @@ body {
   flex-direction: column;
 }
 :root {
-  /* --independent-color: #f76320; */
-  --independent-color: #afd74b;
+  --independent-color: #f76320;
+  /* --independent-color: #afd74b; */
   /* --independent-color: #3030bb; */
 }
 input[type='text'] {

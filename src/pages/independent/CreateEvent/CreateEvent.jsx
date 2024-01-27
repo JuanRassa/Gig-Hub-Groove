@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CreateFormContext } from '../../../context/CreateFormContext';
+import { LoginContext } from '../../../context/LoginContext';
 
 import GeneralInfo from './../FormSections/GeneralInfo';
 import LocationInformation from './../FormSections/LocationInformation';
@@ -13,6 +14,10 @@ import { Flex } from '@chakra-ui/layout';
 const CreateEvent = () => {
   const API_URL = `https://gig-hub-independent.adaptable.app/events`;
   const navigate = useNavigate();
+  const {
+    isPopupOpenCtx: [, setIsPopupOpen],
+    popupMessageCtx: [, setPopupMessage],
+  } = useContext(LoginContext);
   /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
   /* *** *** *** *** *** *** States *** *** *** *** *** *** *** ***  */
   // General Info:
@@ -123,8 +128,13 @@ const CreateEvent = () => {
     try {
       const response = await axios.post(API_URL, createNewEvent_body);
       if (response.status === 201) {
-        alert('Event Created succesfuly');
-        return navigate('/independent');
+        // alert('Event Created succesfuly');
+        setIsPopupOpen(true);
+        setPopupMessage('The event was created succesfully.');
+        setTimeout(() => {
+          navigate('/independent');
+          return setIsPopupOpen(false);
+        }, 1800);
       }
     } catch (error) {
       console.log(error);
@@ -135,7 +145,6 @@ const CreateEvent = () => {
 
   return (
     <div className='CreateEvent'>
-      <h2>Create a new event</h2>
       <CreateFormContext.Provider
         value={{
           states: {

@@ -34,12 +34,7 @@ const LocationInformation = () => {
         </Text>
 
         <Box>
-          <Text
-            htmlFor='event_geoCountryIso2'
-            fontWeight='600'
-            color='#FDF8F2'
-            mt='4'
-          >
+          <Text htmlFor='event_geoCountryIso2' fontWeight='600' color='#FDF8F2' mt='4'>
             Country:
             <Select
               name='event_geoCountryIso2'
@@ -47,14 +42,10 @@ const LocationInformation = () => {
               value={event_event_geoCountryIso2}
               onChange={e => {
                 event_event_geoCountryIso2_funk(e);
-              }}
-            >
+              }}>
               {countriesList.length > 0 &&
                 countriesList.map(country => (
-                  <option
-                    key={country.geoCountryIso2}
-                    value={country.geoCountryIso2}
-                  >
+                  <option key={country.geoCountryIso2} value={country.geoCountryIso2}>
                     {country.countryName}
                   </option>
                 ))}
@@ -63,12 +54,7 @@ const LocationInformation = () => {
         </Box>
 
         <Box>
-          <Text
-            htmlFor='event_geoCityName'
-            fontWeight='600'
-            color='#FDF8F2'
-            mt='4'
-          >
+          <Text htmlFor='event_geoCityName' fontWeight='600' color='#FDF8F2' mt='4'>
             City:
             <Input
               type='text'
@@ -83,12 +69,7 @@ const LocationInformation = () => {
         </Box>
 
         <Box>
-          <Text
-            htmlFor='event_venueName'
-            fontWeight='600'
-            color='#FDF8F2'
-            mt='4'
-          >
+          <Text htmlFor='event_venueName' fontWeight='600' color='#FDF8F2' mt='4'>
             Venue's Name:
             <Input
               type='text'
@@ -103,52 +84,7 @@ const LocationInformation = () => {
         </Box>
 
         <Box>
-          <Text
-            htmlFor='event_venueType'
-            fontWeight='600'
-            color='#FDF8F2'
-            mt='4'
-          >
-            Venue's Type:
-            <Input
-              type='text'
-              name='event_venueType'
-              id='event_venueType'
-              value={event_event_venueType}
-              onChange={e => {
-                event_event_venueType_funk(e);
-              }}
-            />
-          </Text>
-        </Box>
-
-        <Box>
-          <Text
-            htmlFor='event_venueCapacity'
-            fontWeight='600'
-            color='#FDF8F2'
-            mt='4'
-          >
-            Venue's Capacity:
-            <Input
-              type='text'
-              name='event_venueCapacity'
-              id='event_venueCapacity'
-              value={event_event_venueCapacity}
-              onChange={e => {
-                event_event_venueCapacity_funk(e);
-              }}
-            />
-          </Text>
-        </Box>
-
-        <Box>
-          <Text
-            htmlFor='event_venuePostalCode'
-            fontWeight='600'
-            color='#FDF8F2'
-            mt='4'
-          >
+          <Text htmlFor='event_venuePostalCode' fontWeight='600' color='#FDF8F2' mt='4'>
             Venue's Postal Code:
             <Input
               type='text'

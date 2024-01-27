@@ -26,7 +26,7 @@ function EventDetailsIndependent() {
   // console.log('Event:', event);
 
   return (
-    <Flex flexDirection='column' align='center' mt='8'>
+    <Flex flexDirection='column' align='center' mt='8' pb='20'>
       {event ? (
         <Box key={event.identifier} w='80%' maxW='1200px'>
           <Flex>
@@ -38,7 +38,7 @@ function EventDetailsIndependent() {
               </Heading>
 
               <Text fontSize='lg' color='#FDF8F2'>
-                {event.geoCityName}, {event.geoCountryIso2}
+                {event.location && event.location.name}
               </Text>
 
               <Text fontWeight='600' color='#FDF8F2' mt='4'>
@@ -54,17 +54,21 @@ function EventDetailsIndependent() {
               <Text color='#FDF8F2'>
                 <strong>{event['start-date']}</strong>
               </Text>
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                End Date:
+              </Text>
+              <Text color='#FDF8F2'>
+                <strong>{event['end-date']}</strong>
+              </Text>
 
-              {/* <Text fontWeight='600' color='#FDF8F2' paddingTop='20px'>
-                Location Address:
+              <Text fontWeight='600' color='#FDF8F2' paddingTop='20px'>
+                Location:
               </Text>
               <Text fontSize='md' color='#FDF8F2'>
-                {event.location && event.location.address && event.location.address.addressLocality}
-              </Text> */}
-
-              <Text fontSize='md' color='#FDF8F2'>
-                {event.location && event.location.address && event.location.address.streetAddress}
+                {event.geoCityName}, {event.geoCountryIso2} - {event.location && event.location.postalAdress && event.location.postalAdress}
               </Text>
+
+              <Text fontSize='md' color='#FDF8F2'></Text>
             </Box>
           </Flex>
 

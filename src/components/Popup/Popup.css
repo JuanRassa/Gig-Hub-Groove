@@ -1,0 +1,44 @@
+.Popup {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.588);
+  z-index: 9999999;
+}
+.Popup_wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 350px;
+  height: 220px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid var(--independent-color);
+  background-color: black;
+  padding: 1.5rem;
+  z-index: 0;
+}
+.Popup p {
+  margin: 0;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  z-index: 120;
+}
+.Popup img {
+  position: absolute;
+  animation: spinClockWise 8s linear infinite;
+  width: 80px;
+  height: 80px;
+  left: 140px;
+  bottom: 30px;
+  z-index: 0;
+}
