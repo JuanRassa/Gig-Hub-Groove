@@ -1,6 +1,7 @@
 .HomePage {
   flex-grow: 1;
   background-color: #000;
+  overflow: hidden;
 }
 .linkContainer {
   height: 100%;
@@ -48,7 +49,7 @@
   transition: all 0.4s ease-in-out;
 }
 .trendyCurtain::before {
-  content: '---------------------------------------------------------------';
+  content: '-----------------------------------------------------------------';
   position: absolute;
   top: 0%;
   left: -25px;
@@ -94,7 +95,7 @@
   transition: all 0.4s ease-in-out;
 }
 .independentCurtain::before {
-  content: '---------------------------------------------------------------';
+  content: '-----------------------------------------------------------------';
   position: absolute;
   top: 0%;
   right: 25px;
