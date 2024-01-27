@@ -43,7 +43,7 @@ const ChakraCard = ({ events, isInWishList, removeEventWishList, addEventWishLis
   return (
     <Card maxW='sm' bgColor='#FDF8F2' className={`cardDisplay ${pathname === '/independent' ? 'cardDisplayIndependent' : ''}`}>
       <CardBody>
-        <img src={events.image} alt='{events.name}' />
+        <img src={events.image} alt={events.name} />
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{events.name}</Heading>
         </Stack>

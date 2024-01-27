@@ -134,7 +134,6 @@ const EditEvent = () => {
       .get(`https://gig-hub-independent.adaptable.app/events/?id=${eventId}`)
       .then(response => {
         const eventFromApi = response.data[0];
-
         set_Event_name(eventFromApi.name);
         set_Event_start_date(eventFromApi['start-date']);
         set_Event_end_date(eventFromApi['end-date']);

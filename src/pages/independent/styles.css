@@ -28,3 +28,9 @@
   transition: all 0.4s ease-in-out;
   border: 1px solid var(--independent-color);
 }
+.CreateEvent_inputContainer {
+  border-radius: 4px;
+  padding: 1rem;
+  border: 2px solid #fff;
+  margin-bottom: 1rem;
+}

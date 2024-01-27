@@ -87,7 +87,12 @@ const CreateEvent = () => {
   };
   const handleChange = (index, event) => {
     const newInputFields = [...event_performer_array];
-    newInputFields[index].value = event.target.value;
+    const { name, value } = event.target;
+    if (name === 'name') {
+      newInputFields[index][name] = value;
+    } else {
+      newInputFields[index][name] = [value];
+    }
     set_Event_performer_array(newInputFields);
   };
 
@@ -149,10 +154,7 @@ const CreateEvent = () => {
             event_event_venueCapacity_ctx: [event_event_venueCapacity],
             event_event_venuePostalCode_ctx: [event_event_venuePostalCode],
             // LineUp Info:
-            event_performer_array_ctx: [
-              event_performer_array,
-              set_Event_performer_array,
-            ],
+            event_performer_array_ctx: [event_performer_array, set_Event_performer_array],
           },
           funks: {
             // Performers Info:
@@ -164,31 +166,23 @@ const CreateEvent = () => {
             event_image_url_funk_ctx: event_image_url_funk,
             event_event_description_funk_ctx: event_event_description_funk,
             // Location Info:
-            event_event_geoCountryIso2_funk_ctx:
-              event_event_geoCountryIso2_funk,
+            event_event_geoCountryIso2_funk_ctx: event_event_geoCountryIso2_funk,
             event_event_geoCityName_funk_ctx: event_event_geoCityName_funk,
             event_event_venueName_funk_ctx: event_event_venueName_funk,
             event_event_venueType_funk_ctx: event_event_venueType_funk,
             event_event_venueCapacity_funk_ctx: event_event_venueCapacity_funk,
-            event_event_venuePostalCode_funk_ctx:
-              event_event_venuePostalCode_funk,
+            event_event_venuePostalCode_funk_ctx: event_event_venuePostalCode_funk,
             // Performers Info:
             event_ADD_performer_array_funk_ctx: event_ADD_performer_array_funk,
             handleChange_ctx: handleChange,
           },
-        }}
-      >
+        }}>
         <form onSubmit={handleSubmit}>
           <GeneralInfo />
           <LocationInformation />
           <TypeOfEvent />
           <LineUpInformation />
-          <Flex
-            flexDirection='column'
-            align='center'
-            mt='8'
-            paddingBottom='30px'
-          >
+          <Flex flexDirection='column' align='center' mt='8' paddingBottom='30px'>
             <Button
               className='submitEditBtn'
               type='submit'
@@ -197,8 +191,7 @@ const CreateEvent = () => {
               _hover={{
                 bgColor: '#292A2A',
                 color: '#FDF8F2',
-              }}
-            >
+              }}>
               Create
             </Button>
           </Flex>

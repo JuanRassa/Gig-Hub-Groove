@@ -21,3 +21,12 @@ body {
   --independent-color: #afd74b;
   /* --independent-color: #3030bb; */
 }
+input[type='text'] {
+  color: #fff;
+}
+.eventDetail_img {
+  min-width: 40%;
+  min-height: 280px;
+  max-height: 300px;
+  object-fit: cover;
+}

@@ -2,15 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-  Flex,
-  Heading,
-  Text,
-  Divider,
-  Button,
-  Box,
-  Image,
-} from '@chakra-ui/react';
+import { Flex, Heading, Text, Divider, Button, Box, Image } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 
 function EventDetailsIndependent() {
@@ -38,7 +30,7 @@ function EventDetailsIndependent() {
       {event ? (
         <Box key={event.identifier} w='80%' maxW='1200px'>
           <Flex>
-            <Image src={event.image} alt={event.name} maxW='50%' mr='4' />
+            <Image className='eventDetail_img' src={event.image} alt={event.name} maxW='50%' mr='4' />
 
             <Box>
               <Heading size='xl' color='#FDF8F2'>
@@ -60,22 +52,18 @@ function EventDetailsIndependent() {
                 Start Date:
               </Text>
               <Text color='#FDF8F2'>
-                <strong>{event.startDate}</strong>
+                <strong>{event['start-date']}</strong>
               </Text>
 
-              <Text fontWeight='600' color='#FDF8F2' paddingTop='20px'>
+              {/* <Text fontWeight='600' color='#FDF8F2' paddingTop='20px'>
                 Location Address:
               </Text>
               <Text fontSize='md' color='#FDF8F2'>
-                {event.location &&
-                  event.location.address &&
-                  event.location.address.addressLocality}
-              </Text>
+                {event.location && event.location.address && event.location.address.addressLocality}
+              </Text> */}
 
               <Text fontSize='md' color='#FDF8F2'>
-                {event.location &&
-                  event.location.address &&
-                  event.location.address.streetAddress}
+                {event.location && event.location.address && event.location.address.streetAddress}
               </Text>
             </Box>
           </Flex>
@@ -83,18 +71,48 @@ function EventDetailsIndependent() {
           <Divider my='4' />
 
           <Box>
-            <Text fontWeight='600' color='#FDF8F2' mt='4'>
-              Performers:
+            <Text fontWeight='600' color='#FDF8F2'>
+              Genres:
             </Text>
-            <Text color='#FDF8F2'>
-              {event.performer &&
-                Array.isArray(event.performer) &&
-                event.performer
-                  .slice(0, 10)
-                  .map(performer => performer.name)
-                  .join(', ')}{' '}
-              and much more!
-            </Text>
+            {(event['@type'] === 'Concert' || event['@type'] === 'Festival') && (
+              <Text color='#FDF8F2'>
+                {event.performer &&
+                  Array.isArray(event.performer) &&
+                  (() => {
+                    const uniqueGenres = new Set();
+                    event.performer.forEach(performer => {
+                      if (performer.genre && Array.isArray(performer.genre)) {
+                        performer.genre.forEach(genre => {
+                          if (typeof genre === 'string' && genre.trim() !== '') {
+                            uniqueGenres.add(genre.trim());
+                          }
+                        });
+                      } else if (typeof performer.genre === 'string' && performer.genre.trim() !== '') {
+                        uniqueGenres.add(performer.genre.trim());
+                      }
+                    });
+
+                    const filteredGenres = Array.from(uniqueGenres);
+
+                    return filteredGenres.length > 0 ? filteredGenres.join(',') : '';
+                  })()}
+              </Text>
+            )}
+
+            <Box>
+              <Text fontWeight='600' color='#FDF8F2' mt='4'>
+                Performers:
+              </Text>
+              <Flex flexWrap='wrap'>
+                {event.performer &&
+                  Array.isArray(event.performer) &&
+                  event.performer.map((performer, index) => (
+                    <Box key={index} width={['50%', '50%']} mb='2' flexShrink={0}>
+                      <Text color='#FDF8F2'>{performer.name}</Text>
+                    </Box>
+                  ))}
+              </Flex>
+            </Box>
           </Box>
 
           <Button
@@ -104,13 +122,14 @@ function EventDetailsIndependent() {
             _hover={{
               bgColor: '#FDF8F2',
               color: '#292A2A',
-            }}
-          >
-            Buy tickets
+            }}>
+            <a href='https://volleybomb.netlify.app/' target='_blank'>
+              Have some fun!
+            </a>
           </Button>
         </Box>
       ) : (
-        <Spinner />
+        <Spinner color='#FDF8F2' />
       )}
     </Flex>
   );

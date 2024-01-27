@@ -2,15 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Flex,
-  Heading,
-  Text,
-  Divider,
-  Button,
-  Box,
-  Image,
-} from '@chakra-ui/react';
+import { Flex, Heading, Text, Divider, Button, Box, Image } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -22,9 +14,7 @@ function EventDetails() {
 
   useEffect(() => {
     axios
-      .get(
-        `https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`
-      )
+      .get(`https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`)
       .then(response => {
         // console.log('API Response:', response.data);
         const eventFromApi = response.data.event;
@@ -43,7 +33,7 @@ function EventDetails() {
       {event ? (
         <Box key={event.identifier} w='80%' maxW='1200px'>
           <Flex>
-            <Image src={event.image} alt={event.name} maxW='50%' mr='4' />
+            <Image className='eventDetail_img' src={event.image} alt={event.name} maxW='50%' mr='4' />
 
             <Box>
               <Heading size='xl' color='#FDF8F2'>
@@ -72,24 +62,15 @@ function EventDetails() {
                 Location Address:
               </Text>
               <Text fontSize='md' color='#FDF8F2'>
-                {event.location &&
-                  event.location.address &&
-                  event.location.address.addressLocality}
+                {event.location && event.location.address && event.location.address.addressLocality}
               </Text>
               <Text fontSize='md' color='#FDF8F2'>
-                {event.location &&
-                  event.location.address &&
-                  event.location.address.addressCountry.name}{' '}
-                -{' '}
-                {event.location &&
-                  event.location.address &&
-                  event.location.address.addressCountry.identifier}
+                {event.location && event.location.address && event.location.address.addressCountry.name} -{' '}
+                {event.location && event.location.address && event.location.address.addressCountry.identifier}
               </Text>
 
               <Text fontSize='md' color='#FDF8F2'>
-                {event.location &&
-                  event.location.address &&
-                  event.location.address.streetAddress}
+                {event.location && event.location.address && event.location.address.streetAddress}
               </Text>
             </Box>
           </Flex>
@@ -100,8 +81,7 @@ function EventDetails() {
             <Text fontWeight='600' color='#FDF8F2'>
               Genres:
             </Text>
-            {(event['@type'] === 'Concert' ||
-              event['@type'] === 'Festival') && (
+            {(event['@type'] === 'Concert' || event['@type'] === 'Festival') && (
               <Text color='#FDF8F2'>
                 {event.performer &&
                   Array.isArray(event.performer) &&
@@ -110,26 +90,18 @@ function EventDetails() {
                     event.performer.forEach(performer => {
                       if (performer.genre && Array.isArray(performer.genre)) {
                         performer.genre.forEach(genre => {
-                          if (
-                            typeof genre === 'string' &&
-                            genre.trim() !== ''
-                          ) {
+                          if (typeof genre === 'string' && genre.trim() !== '') {
                             uniqueGenres.add(genre.trim());
                           }
                         });
-                      } else if (
-                        typeof performer.genre === 'string' &&
-                        performer.genre.trim() !== ''
-                      ) {
+                      } else if (typeof performer.genre === 'string' && performer.genre.trim() !== '') {
                         uniqueGenres.add(performer.genre.trim());
                       }
                     });
 
                     const filteredGenres = Array.from(uniqueGenres);
 
-                    return filteredGenres.length > 0
-                      ? filteredGenres.join(',')
-                      : '';
+                    return filteredGenres.length > 0 ? filteredGenres.join(',') : '';
                   })()}
               </Text>
             )}
@@ -142,12 +114,7 @@ function EventDetails() {
                 {event.performer &&
                   Array.isArray(event.performer) &&
                   event.performer.map((performer, index) => (
-                    <Box
-                      key={index}
-                      width={['50%', '50%']}
-                      mb='2'
-                      flexShrink={0}
-                    >
+                    <Box key={index} width={['50%', '50%']} mb='2' flexShrink={0}>
                       <Text color='#FDF8F2'>{performer.name}</Text>
                     </Box>
                   ))}
@@ -162,14 +129,14 @@ function EventDetails() {
             _hover={{
               bgColor: '#FDF8F2',
               color: '#292A2A',
-            }}
-          >
+            }}>
             {' '}
-            Buy tickets
             {event.offers &&
               Array.isArray(event.offers) &&
               event.offers.map((offers, index) => (
-                <Link key={index} to={offers.url}></Link>
+                <a className='buyTicketsBtn' key={index} href={offers.url} target='_blank'>
+                  Buy tickets
+                </a>
               ))}
           </Button>
 
@@ -183,11 +150,10 @@ function EventDetails() {
             allowFullScreen
             referrerPolicy='no-referrer-when-downgrade'
             src='https://www.google.com/maps/embed/v1/place?key=
-    &q=Space+Needle,Seattle+WA'
-          ></iframe>
+    &q=Space+Needle,Seattle+WA'></iframe>
         </Box>
       ) : (
-        <Spinner />
+        <Spinner color='#FDF8F2' />
       )}
     </Flex>
   );
