@@ -19,3 +19,12 @@
   border-color: var(--independent-color) !important;
   transition: all 0.4s ease-in-out;
 }
+.submitEditBtn {
+  color: #fff !important;
+  background-color: transparent !important;
+}
+.submitEditBtn:hover {
+  background-color: var(--independent-color) !important;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid var(--independent-color);
+}
