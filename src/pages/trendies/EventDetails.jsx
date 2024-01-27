@@ -137,13 +137,12 @@ function EventDetails() {
               color: '#292A2A',
             }}>
             {' '}
-            {event.offers &&
-              Array.isArray(event.offers) &&
-              event.offers.map((offers, index) => (
-                <a className='buyTicketsBtn' key={index} href={offers.url} target='_blank'>
-                  Buy tickets
-                </a>
-              ))}
+            {event.offers && Array.isArray(event.offers) && event.offers.length > 0 && (
+              <a className='buyTicketsBtn' href={event.offers[0].url} target='_blank'>
+                Buy tickets
+              </a>
+            )}
+            {event.offers.length === 0 && 'Sold Out!'}
           </Button>
 
           <Divider my='4' />
