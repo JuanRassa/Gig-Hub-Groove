@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Input, Stack, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Search2Icon } from '@chakra-ui/icons';
 
 function SearchBar({ allIndependent, setShowIndependent }) {
   const [search, setSearch] = useState('');
@@ -29,6 +30,9 @@ function SearchBar({ allIndependent, setShowIndependent }) {
   return (
     <Stack spacing='4'>
       <InputGroup>
+        <InputLeftElement pointerEvents='none'>
+          <Search2Icon color='#FDF8F2' margin='18px 0px 0px 295px' />
+        </InputLeftElement>
         <Input
           margin='10px 150px 30px 150px'
           type='text'

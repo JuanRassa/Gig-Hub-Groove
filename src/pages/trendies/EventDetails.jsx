@@ -128,7 +128,11 @@ function EventDetails() {
                     const filteredGenres = Array.from(uniqueGenres);
 
                     return filteredGenres.length > 0
-                      ? filteredGenres.join(',')
+                      ? filteredGenres
+                          .map(
+                            word => word.charAt(0).toUpperCase() + word.slice(1)
+                          )
+                          .join(', ')
                       : '';
                   })()}
               </Text>
@@ -187,7 +191,7 @@ function EventDetails() {
           ></iframe>
         </Box>
       ) : (
-        <Spinner />
+        <Spinner size='xl' color='#FDF8F2' />
       )}
     </Flex>
   );
