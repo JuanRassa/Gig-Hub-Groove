@@ -6,21 +6,19 @@ import { Flex, Heading, Text, Divider, Button, Box, Image } from '@chakra-ui/rea
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import './styles.css';
+import pinMap from '../../assets/cymaticSpin5.png';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 
 function EventDetails() {
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
-  console.log('LT', event?.location?.geo?.latitude);
-  console.log('LG', event?.location?.geo?.longitude);
   useEffect(() => {
     axios
       .get(`https://www.jambase.com/jb-api/v1/events/id/${eventId}?apikey=${API_KEY}`)
       .then(response => {
         // console.log('API Response:', response.data);
         const eventFromApi = response.data.event;
-        console.log('Event from API:', eventFromApi);
         setEvent(eventFromApi);
       })
       .catch(error => {
@@ -50,11 +48,16 @@ function EventDetails() {
           mapId: 'DEMO_MAP_ID',
         });
 
+        const icon = {
+          url: pinMap, // url
+          scaledSize: new google.maps.Size(40, 40), // scaled size
+        };
         // The marker, positioned at Uluru
-        const marker = new AdvancedMarkerView({
+        const marker = new google.maps.Marker({
           map: map,
           position: position,
-          title: '',
+          title: 'RASSA',
+          icon: icon,
         });
       }
 
