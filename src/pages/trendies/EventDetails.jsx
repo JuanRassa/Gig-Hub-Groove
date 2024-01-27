@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+
 import { Flex, Heading, Text, Divider, Button, Box, Image } from '@chakra-ui/react';
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
@@ -9,6 +10,7 @@ import './styles.css';
 import pinMap from '../../assets/cymaticSpin5.png';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
+let GM_KEY = import.meta.env.GM_KEY;
 
 function EventDetails() {
   const { eventId } = useParams();
@@ -69,6 +71,12 @@ function EventDetails() {
 
   return (
     <Flex flexDirection='column' align='center' mt='8'>
+      <Helmet>
+        <script>{`
+        (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = 'https://maps.googleapis.com/maps/api/js?' + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
+        ({ key: ${GM_KEY}, v: "beta" });
+        `}</script>
+      </Helmet>
       {event ? (
         <Box key={event.identifier} w='80%' maxW='1200px'>
           <Flex>
