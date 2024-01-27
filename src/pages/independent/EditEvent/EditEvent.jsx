@@ -10,7 +10,6 @@ import TypeOfEvent from './../FormSections/TypeOfEvent';
 import LineUpInformation from './../FormSections/LineUpInformation';
 import { Flex } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
-import { Flex } from '@chakra-ui/layout';
 
 const EditEvent = () => {
   const API_URL = `https://gig-hub-independent.adaptable.app/events`;
