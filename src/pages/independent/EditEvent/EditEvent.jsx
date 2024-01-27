@@ -94,7 +94,12 @@ const EditEvent = () => {
   };
   const handleChange = (index, event) => {
     const newInputFields = [...event_performer_array];
-    newInputFields[index].value = event.target.value;
+    const { name, value } = event.target;
+    if (name === 'name') {
+      newInputFields[index][name] = value;
+    } else {
+      newInputFields[index][name] = [value];
+    }
     set_Event_performer_array(newInputFields);
   };
 

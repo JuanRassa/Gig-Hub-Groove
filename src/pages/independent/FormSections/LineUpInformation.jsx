@@ -26,6 +26,7 @@ const LineUpInformation = () => {
           {event_performer_array.length > 0 &&
             event_performer_array.map((performer, index) => (
               <div key={index} className='CreateEvent_inputContainer'>
+                {console.log(performer)}
                 <Text htmlFor='event_performer_name' fontWeight='600' color='#FDF8F2' mt='4'>
                   Performer's Name:
                   <Input
@@ -104,7 +105,7 @@ const LineUpInformation = () => {
                   type='text'
                   name='name'
                   id='event_performer_name-solo'
-                  placeholder={`Your artist...`}
+                  placeholder={`Artist name`}
                   value={performer.name}
                   onChange={e => {
                     handleChange(index, e);
@@ -119,6 +120,9 @@ const LineUpInformation = () => {
                     onChange={e => {
                       handleChange(index, e);
                     }}>
+                    <option disabled value=''>
+                      Choose a genre
+                    </option>
                     <option value='bluegrass'>Bluegrass</option>
                     <option value='blues'>Blues</option>
                     <option value='christian'>Christian</option>
@@ -139,45 +143,6 @@ const LineUpInformation = () => {
                     <option value='rock'>Rock</option>
                   </Select>
                 </Text>
-                {/* <Text htmlFor={`event_performer_genre_${index}`} fontWeight='600' color='#FDF8F2' mt='4'>
-                  Origen:
-                  <Input
-                    type='text'
-                    name={`event_performer_geoCountryIso2_${index}`}
-                    id={`event_performer_geoCountryIso2_${index}`}
-                    placeholder={`Input ${index + 1}`}
-                    value={performer.geoCountryIso2}
-                    onChange={e => {
-                      handleChange(index, 'geoCountryIso2', e);
-                    }}
-                  />
-                </Text>
-                <Text htmlFor={`event_image_url_${index}`} fontWeight='600' color='#FDF8F2' mt='4'>
-                  Image URL:
-                  <Input
-                    type='text'
-                    name={`event_performer_image_${index}`}
-                    id={`event_performer_image_${index}`}
-                    placeholder={`Image URL ${index + 1}`}
-                    value={performer.image}
-                    onChange={e => {
-                      handleChange(index, 'image', e);
-                    }}
-                  />
-                </Text>
-                <Text htmlFor={`event_performer_url_${index}`} fontWeight='600' color='#FDF8F2' mt='4'>
-                  Artist URL:
-                  <Input
-                    type='text'
-                    name={`event_performer_url_${index}`}
-                    id={`event_performer_url_${index}`}
-                    placeholder={`URL ${index + 1}`}
-                    value={performer.url}
-                    onChange={e => {
-                      handleChange(index, 'url', e);
-                    }}
-                  />
-                </Text> */}
               </div>
             ))}
         </fieldset>

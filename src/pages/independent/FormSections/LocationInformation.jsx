@@ -43,6 +43,9 @@ const LocationInformation = () => {
               onChange={e => {
                 event_event_geoCountryIso2_funk(e);
               }}>
+              <option disabled value=''>
+                Choose a country
+              </option>
               {countriesList.length > 0 &&
                 countriesList.map(country => (
                   <option key={country.geoCountryIso2} value={country.geoCountryIso2}>

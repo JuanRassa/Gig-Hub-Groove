@@ -37,7 +37,7 @@ const CreateEvent = () => {
   const [event_type_value, set_Event_type_value] = useState('concert');
   // Performers Info:
   const [event_performer_array, set_Event_performer_array] = useState([]);
-
+  console.log('event_performer_arrayCREATE', event_performer_array);
   /* *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***  */
   /* *** *** *** *** *** Input Handlers Funks *** *** *** *** *** ***  */
   // General Info:

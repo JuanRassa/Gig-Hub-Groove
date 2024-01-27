@@ -15,6 +15,7 @@ const TypeOfEvent = () => {
       event_ADD_performer_array_funk_ctx: event_ADD_performer_array_funk,
     },
   } = useContext(CreateFormContext);
+
   return (
     <Flex flexDirection='column' align='center' mt='8'>
       <fieldset>
@@ -28,6 +29,7 @@ const TypeOfEvent = () => {
               type='radio'
               name='event_type_concert'
               id='event_concert'
+              defaultChecked={true}
               checked={event_type_value === 'concert' ? true : false}
               value='concert'
               onChange={e => {
