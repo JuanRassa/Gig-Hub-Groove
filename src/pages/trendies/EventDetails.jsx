@@ -7,7 +7,7 @@ import { Flex, Heading, Text, Divider, Button, Box, Image } from '@chakra-ui/rea
 import { Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import './styles.css';
-import pinMap from '../../assets/cymaticSpin5.png';
+import pinMap from '../../assets/cymaticSpin5-removebg.png';
 
 let API_KEY = import.meta.env.VITE_API_KEY;
 let GM_KEY = import.meta.env.GM_KEY;
@@ -52,13 +52,13 @@ function EventDetails() {
 
         const icon = {
           url: pinMap, // url
-          scaledSize: new google.maps.Size(40, 40), // scaled size
+          scaledSize: new google.maps.Size(50, 50), // scaled size
         };
         // The marker, positioned at Uluru
         const marker = new google.maps.Marker({
           map: map,
           position: position,
-          title: 'RASSA',
+          title: 'Ágora Event',
           icon: icon,
         });
       }
