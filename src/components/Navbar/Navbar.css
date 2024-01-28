@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 .Navbar_section {
-  min-width: 220px;
+  /* min-width: 220px; */
 }
 .Navbar_btn {
   position: relative;
@@ -55,6 +55,11 @@
   align-items: center;
   z-index: 20;
   font-size: 44px;
+}
+.Navbar_aboutLink {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 .Navbar_loginRegister {
   display: flex;

@@ -13,6 +13,7 @@ import Favorites from './pages/users/Favorites';
 import CreateEvent from './pages/independent/CreateEvent/CreateEvent';
 import EditEvent from './pages/independent/EditEvent/EditEvent';
 import Navbar from './components/Navbar/Navbar';
+import AboutPage from './pages/AboutPage';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Popup } from './components/Popup/Popup';
 
@@ -45,24 +46,35 @@ function App() {
             isLoggedCtx: [isLogged, setIsLogged],
             usernameAuthCtx: [usernameAuth, setUsernameAuth],
             userIdAuthCtx: [userIdAuth, setUserIdAuth],
-            triggerIndependentGetCtx: [triggerIndependentGet, setTriggerIndependentGet],
+            triggerIndependentGetCtx: [
+              triggerIndependentGet,
+              setTriggerIndependentGet,
+            ],
             isPopupOpenCtx: [isPopupOpen, setIsPopupOpen],
             popupMessageCtx: [popupMessage, setPopupMessage],
-          }}>
+          }}
+        >
           <Popup />
           <Navbar />
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/about' element={<AboutPage />} />
             <Route path='/allconcerts' element={<AllConcerts />} />
             <Route path='/allconcerts/:eventId' element={<EventDetails />} />
 
             <Route path='/independent' element={<HomeIndependent />} />
-            <Route path='/independent/:eventId' element={<EventDetailsIndependent />} />
+            <Route
+              path='/independent/:eventId'
+              element={<EventDetailsIndependent />}
+            />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/my-favorites' element={<Favorites />} />
             <Route path='/create-event' element={<CreateEvent />} />
-            <Route path='/independent/edit-event/:eventId' element={<EditEvent />} />
+            <Route
+              path='/independent/edit-event/:eventId'
+              element={<EditEvent />}
+            />
           </Routes>
         </LoginContext.Provider>
       </ChakraProvider>

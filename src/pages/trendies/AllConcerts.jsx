@@ -74,18 +74,25 @@ function AllConcerts() {
 
   return (
     <Box bg='#292A2A'>
-      <Text
-        fontSize='28px'
+      <Heading
+        size='xl'
         fontWeight='600'
         align='center'
         color='#FDF8F2'
         paddingBottom='20px'
-        paddingTop='20px'
+        mt='40px'
       >
         Trendy Concerts
+      </Heading>
+
+      <Text color='#FDF8F2' m='20px 60px 20px 60px' align='center'>
+        Uncover extraordinary performances by internationally acclaimed artists.
+        Our Trendy Concerts showcase spectacular events headlined by celebrated
+        artists from across the globe, offering you an unparalleled experience
+        in the world of entertainment.
       </Text>
 
-      <Accordion allowToggle margin='10px 30px 10px 30px'>
+      <Accordion allowToggle margin='10px 60px 10px 60px'>
         <AccordionItem>
           <AccordionButton>
             <Box as='span' flex='1' textAlign='left'>

@@ -31,10 +31,10 @@ function SearchBar({ allIndependent, setShowIndependent }) {
     <Stack spacing='4'>
       <InputGroup>
         <InputLeftElement pointerEvents='none'>
-          <Search2Icon color='#FDF8F2' margin='18px 0px 0px 295px' />
+          <Search2Icon color='#FDF8F2' margin='18px 0px 0px 500px' />
         </InputLeftElement>
         <Input
-          margin='10px 150px 30px 150px'
+          margin='10px 250px 30px 250px'
           type='text'
           placeholder='search..'
           value={search}

@@ -7,6 +7,7 @@ import { Text } from '@chakra-ui/layout';
 import { Flex } from '@chakra-ui/layout';
 import { Button } from '@chakra-ui/button';
 import { Spinner } from '@chakra-ui/spinner';
+import { Heading } from '@chakra-ui/layout';
 import './styles.css';
 import { LoginContext } from '../../context/LoginContext';
 
@@ -55,11 +56,30 @@ const HomeIndependent = () => {
 
   return (
     <div className='HomeIndependent'>
-      <Text fontSize='28px' fontWeight='600' align='center' color='#FDF8F2' paddingBottom='20px' paddingTop='20px'>
+      <Heading
+        size='xl'
+        fontWeight='600'
+        align='center'
+        color='#FDF8F2'
+        paddingBottom='20px'
+        mt='40px'
+      >
         Independent Concerts
+      </Heading>
+
+      <Text color='#FDF8F2' m='20px 150px 20px 150px' align='center'>
+        Discover the vibrant world of our Independent Showcase page, where you
+        have the opportunity to discover upcoming concerts and festivals
+        showcasing the talents of independent artists. You can actively
+        contribute to this dynamic community by showcasing and promoting your
+        own concerts. Simply <strong>register</strong> on our page and join us
+        in celebrating the diversity of independent music.
       </Text>
 
-      <SearchBar allIndependent={allIndependent} setShowIndependent={setShowIndependent} />
+      <SearchBar
+        allIndependent={allIndependent}
+        setShowIndependent={setShowIndependent}
+      />
 
       <Flex justifyContent='center'>
         <Button
@@ -74,18 +94,31 @@ const HomeIndependent = () => {
             bgColor: '#292A2A',
             color: '#FDF8F2',
             border: '1px solid #FDF8F2',
-          }}>
+          }}
+        >
           Create new events
         </Button>
       </Flex>
 
-      <Flex flexWrap='wrap' justifyContent='space-evenly' gap='16px' paddingTop='30px'>
+      <Flex
+        flexWrap='wrap'
+        justifyContent='space-evenly'
+        gap='16px'
+        paddingTop='30px'
+      >
         {loading ? (
           <Spinner size='xl' color='#FDF8F2' />
         ) : (
           <div className='AllIndependent__container'>
             {showIndependent.map(event => {
-              return <ChakraCard key={event.id} events={event} defaultColor='#FDF8F2' hoverColor='#AFD74B' />;
+              return (
+                <ChakraCard
+                  key={event.id}
+                  events={event}
+                  defaultColor='#FDF8F2'
+                  hoverColor='#AFD74B'
+                />
+              );
             })}
           </div>
         )}
