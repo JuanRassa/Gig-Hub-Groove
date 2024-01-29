@@ -27,6 +27,9 @@ input[type='text'] {
 .eventDetail_img {
   min-width: 40%;
   min-height: 280px;
-  max-height: 300px;
+  /* max-height: 300px; */
   object-fit: cover;
+}
+option {
+  background-color: #292a2a !important;
 }
